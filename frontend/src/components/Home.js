@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Home.css';
-import { Form, Container, Row, Col, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
+import ProfileCards from './ProfileCards';
 
 const Home = () => {
     return (
@@ -9,7 +10,8 @@ const Home = () => {
                 <span id="slogan">Book your appointments with ease</span>
             </div>
             <div className="search">
-                <Form.Select id="location" aria-label="location" defaultValue="">
+                <Form.Select id="location" aria-label="location">
+                    <option>Location</option>
                     <option value="1">One</option>
                     <option value="2">Two</option>
                     <option value="3">Three</option>
@@ -21,6 +23,9 @@ const Home = () => {
                     <option value="3">Three</option>
                 </Form.Select>
                 <Button variant="primary">Search</Button>
+            </div>
+            <div className='profiles'>
+                <ProfileCards />
             </div>
         </div >
     );

@@ -5,13 +5,6 @@ const ClientNavbar = () => {
     return (
         <Navbar className="navbar" expand="md">
             <Navbar.Brand href="#home">
-                <img
-                    src={logo}
-                    width="40"
-                    height="40"
-                    className="d-inline-block "
-                    id="logo"
-                />
                 AppointMe
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
