@@ -1,41 +1,52 @@
 .profile-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card {
-    border-radius: 16px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Adjust padding as needed */
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-color: #85A98F;
-  }
-  
-  .card img {
-    border-radius: 15px 15px 15px 15px; 
-    height: 150px; /* Adjust height as needed */
-    object-fit: cover; /* Ensure the image fits well */
-  }
-  
-  .card-title {
-    font-size: 0.9rem; /* Adjust font size as needed */
-    margin-bottom: 0.5rem; /* Adjust margin as needed */
-  }
-  
-  .card-text {
-    font-size: 0.75rem; /* Adjust font size as needed */
-    margin-bottom: 0.5rem; /* Adjust margin as needed */
-  }
-  
-  .card-body {
-    padding: 0.5rem; /* Adjust padding as needed */
-  }
-  
-  button {
-    font-size: 0.75 em; /* Adjust font size as needed */
-    padding: 0.25 em 0.5 em; /* Adjust padding as needed */
-  }
+.card {
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  /* Adjust padding as needed */
+  margin-right: 1.5em;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-color: #85A98F;
+}
+
+.card img {
+  border-radius: 15px 15px 15px 15px;
+  height: 150px;
+  /* Adjust height as needed */
+  object-fit: cover;
+  /* Ensure the image fits well */
+}
+
+.card-title {
+  font-size: 0.9rem;
+  /* Adjust font size as needed */
+  margin-bottom: 0.5rem;
+  /* Adjust margin as needed */
+}
+
+.card-text {
+  font-size: 0.75rem;
+  /* Adjust font size as needed */
+  margin-bottom: 0.5rem;
+  /* Adjust margin as needed */
+}
+
+.card-body {
+  padding: 0.5rem;
+  /* Adjust padding as needed */
+}
+
+button {
+  font-size: 0.75 em;
+  /* Adjust font size as needed */
+  padding: 0.25 em 0.5 em;
+  /* Adjust padding as needed */
+}
