@@ -3,7 +3,7 @@ import logo from '../img/logo3.png';
 
 const ClientNavbar = () => {
     return (
-        <Navbar className="navbar" expand="md">
+        <Navbar sticky="top" className="navbar" expand="md">
             <Navbar.Brand href="#home">
                 AppointMe
             </Navbar.Brand>
