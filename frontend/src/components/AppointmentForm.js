@@ -1,5 +1,4 @@
 import '../styles/AppointmentForm.css';
-import Button from 'react-bootstrap/Button';
 
 const AppointmentForm = () => {
 
