@@ -9,12 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ User }) {
+    static associate({ User, Store, Staff }) {
       this.belongsTo(User, { foreignKey: 'userId', as: 'customer' });
+      this.belongsTo(Store, { foreignKey: 'storeId', as: 'store' });
+      this.belongsTo(Staff, { foreignKey: 'staffId', as: 'staff' });
     }
 
     toJSON() {
-      return { ...this.get(), id: undefined }
+      return { ...this.get(), appointmentId: undefined, customerId: undefined, storeId: undefined, staffId: undefined }
     }
 
   }
@@ -24,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false
     },
+    appointmentId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
     customerId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -32,16 +39,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    StaffId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    serviceType: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     appointmentDate: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    service: {
-      type: DataTypes.STRING,
+    appointmentTime: {
+      type: DataTypes.TIME,
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM('pending', 'confirmed', 'cancelled'),
+      type: DataTypes.ENUM('Pending', 'Confirmed', 'Cancelled'),
       allowNull: false,
       defaultValue: 'pending'
     },

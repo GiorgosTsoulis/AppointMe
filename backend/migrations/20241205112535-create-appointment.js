@@ -3,35 +3,31 @@
 module.exports = {
   async up(queryInterface, DataTypes) {
     await queryInterface.createTable('Appointments', {
-      id: {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false
+      },
+      appointmentId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      uuid: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4
-      },
       customerId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: DataTypes.INTEGER
       },
       storeId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: DataTypes.INTEGER
       },
       appointmentDate: {
-        type: DataTypes.DATE,
-        allowNull: false
+        type: DataTypes.DATE
       },
-      service: {
-        type: DataTypes.STRING,
-        allowNull: false
+      serviceType: {
+        type: DataTypes.STRING
       },
       status: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
       },
       createdAt: {
         allowNull: false,

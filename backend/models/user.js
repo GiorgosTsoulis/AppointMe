@@ -5,10 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Define associations here
       this.hasMany(models.Appointment, { foreignKey: 'customerId', as: 'appointments' });
+      this.hasMany(models.Store, { foreignKey: 'admin', as: 'stores' });
     }
 
     toJSON() {
-      return { ...this.get(), id: undefined };
+      return { ...this.get(), userId: undefined, password: undefined };
     }
   }
   User.init(
@@ -17,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false
+      },
+      userId: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
       },
       username: {
         type: DataTypes.STRING,
