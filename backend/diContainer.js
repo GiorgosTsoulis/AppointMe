@@ -8,7 +8,11 @@ const storeRepository = require('./repositories/storeRepository');
 const appointmentRepository = require('./repositories/appointmentRepository');
 
 const userService = require('./services/userService');
-
+const staffService = require('./services/staffService');
+const customerService = require('./services/customerService');
+const adminService = require('./services/adminService');
+const storeService = require('./services/storeService');
+const appointmentService = require('./services/appointmentService');
 
 const userController = require('./controllers/userController');
 

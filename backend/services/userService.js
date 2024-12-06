@@ -1,5 +1,3 @@
-const e = require("express");
-
 class userService {
     constructor(userRepository) {
         this.userRepository = userRepository;

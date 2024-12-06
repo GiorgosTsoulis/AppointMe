@@ -12,6 +12,8 @@ app.put('/users/:uuid', userCtrl.updateUser);
 app.delete('/users/:uuid', userCtrl.deleteUser);
 
 
+
+
 app.listen({ port: 5000 }, async () => {
     console.log('Server running on http://localhost:5000');
     await sequelize.authenticate();
