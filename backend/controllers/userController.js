@@ -2,6 +2,7 @@ class userController {
     constructor(userService) {
         this.userService = userService;
     }
+
     getAllUsers = async (req, res) => {
         try {
             const users = await this.userService.getAllUsers();
