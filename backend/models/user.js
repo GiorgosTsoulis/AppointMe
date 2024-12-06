@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     toJSON() {
-      return { ...this.get(), userId: undefined, password: undefined };
+      const attributes = { ...this.get() };
+      delete attributes.password; // Never expose passwords
+      return attributes;
     }
   }
   User.init(

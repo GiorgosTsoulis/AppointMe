@@ -5,41 +5,42 @@ const { userCtrl, staffCtrl, customerCtrl, adminCtrl, storeCtrl, appointmentCtrl
 const app = express();
 app.use(express.json());
 
-app.get('/users', userCtrl.getAllUsers);
-app.get('/users/:uuid', userCtrl.getUserById);
-app.post('/users', userCtrl.createUser);
-app.put('/users/:uuid', userCtrl.updateUser);
-app.delete('/users/:uuid', userCtrl.deleteUser);
+app.get('/appointme/users', userCtrl.getAllUsers);
+app.get('/appointme/users/:uuid', userCtrl.getUserById);
+app.post('/appointme/users', userCtrl.createUser);
+app.put('/appointme/users/:uuid', userCtrl.updateUser);
+app.delete('/appointme/users/:uuid', userCtrl.deleteUser);
 
-app.get('/staff', staffCtrl.getAllStaff);
-app.get('/staff/:uuid', staffCtrl.getStaffById);
-app.post('/staff', staffCtrl.createStaff);
-app.put('/staff/:uuid', staffCtrl.updateStaff);
-app.delete('/staff/:uuid', staffCtrl.deleteStaff);
+app.get('/appointme/staff', staffCtrl.getAllStaff);
+app.get('/appointme/staff/:uuid', staffCtrl.getStaffById);
+app.post('/appointme/staff', staffCtrl.createStaff);
+app.put('/appointme/staff/:uuid', staffCtrl.updateStaff);
+app.delete('/appointme/staff/:uuid', staffCtrl.deleteStaff);
+app.get('/appointme/staff/:uuid/appointments', staffCtrl.getAppointmentsByStaffId);
 
-app.get('/customers', customerCtrl.getAllCustomers);
-app.get('/customers/:uuid', customerCtrl.getCustomerById);
-app.post('/customers', customerCtrl.createCustomer);
-app.put('/customers/:uuid', customerCtrl.updateCustomer);
-app.delete('/customers/:uuid', customerCtrl.deleteCustomer);
+app.get('/appointme/customers', customerCtrl.getAllCustomers);
+app.get('/appointme/customers/:uuid', customerCtrl.getCustomerById);
+app.post('/appointme/customers', customerCtrl.createCustomer);
+app.put('/appointme/customers/:uuid', customerCtrl.updateCustomer);
+app.delete('/appointme/customers/:uuid', customerCtrl.deleteCustomer);
 
-app.get('/admins', adminCtrl.getAllAdmins);
-app.get('/admins/:uuid', adminCtrl.getAdminById);
-app.post('/admins', adminCtrl.createAdmin);
-app.put('/admins/:uuid', adminCtrl.updateAdmin);
-app.delete('/admins/:uuid', adminCtrl.deleteAdmin);
+app.get('/appointme/admins', adminCtrl.getAllAdmins);
+app.get('/appointme/admins/:uuid', adminCtrl.getAdminById);
+app.post('/appointme/admins', adminCtrl.createAdmin);
+app.put('/appointme/admins/:uuid', adminCtrl.updateAdmin);
+app.delete('/appointme/admins/:uuid', adminCtrl.deleteAdmin);
 
-app.get('/stores', storeCtrl.getAllStores);
-app.get('/stores/:uuid', storeCtrl.getStoreById);
-app.post('/stores', storeCtrl.createStore);
-app.put('/stores/:uuid', storeCtrl.updateStore);
-app.delete('/stores/:uuid', storeCtrl.deleteStore);
+app.get('/appointme/stores', storeCtrl.getAllStores);
+app.get('/appointme/stores/:uuid', storeCtrl.getStoreById);
+app.post('/appointme/stores', storeCtrl.createStore);
+app.put('/appointme/stores/:uuid', storeCtrl.updateStore);
+app.delete('/appointme/stores/:uuid', storeCtrl.deleteStore);
 
-app.get('/appointments', appointmentCtrl.getAllAppointments);
-app.get('/appointments/:uuid', appointmentCtrl.getAppointmentById);
-app.post('/appointments', appointmentCtrl.createAppointment);
-app.put('/appointments/:uuid', appointmentCtrl.updateAppointment);
-app.delete('/appointments/:uuid', appointmentCtrl.deleteAppointment);
+app.get('/appointme/appointments', appointmentCtrl.getAllAppointments);
+app.get('/appointme/appointments/:uuid', appointmentCtrl.getAppointmentById);
+app.post('/appointme/appointments', appointmentCtrl.createAppointment);
+app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
+app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);
 
 app.listen({ port: 5000 }, async () => {
     console.log('Server running on http://localhost:5000');

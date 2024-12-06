@@ -60,6 +60,17 @@ class staffController {
             res.status(500).json(error);
         }
     }
+
+    getAppointments = async (req, res) => {
+        const uuid = req.params.uuid;
+        try {
+            const appointments = await this.staffService.getAppointmentsForStaff(uuid);
+            res.json(appointments);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = staffController;

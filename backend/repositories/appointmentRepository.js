@@ -11,6 +11,10 @@ class appointmentRepository {
         return this.appointmentModel.findOne({ where: { uuid } });
     }
 
+    async getAppointmentsByStaffId(uuid) {
+        return this.appointmentModel.findAll({ where: { staffId: uuid } });
+    }
+
     async createAppointment(appointment) {
         return this.appointmentModel.create(appointment);
     }

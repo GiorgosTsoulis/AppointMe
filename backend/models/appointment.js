@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    StaffId: {
+    staffId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
