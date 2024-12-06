@@ -1,6 +1,11 @@
 const { User, Admin, Staff, Customer, Store, Appointment } = require('./models');
 
 const userRepository = require('./repositories/userRepository');
+const staffRepository = require('./repositories/staffRepository');
+const customerRepository = require('./repositories/customerRepository');
+const adminRepository = require('./repositories/adminRepository');
+const storeRepository = require('./repositories/storeRepository');
+const appointmentRepository = require('./repositories/appointmentRepository');
 
 const userService = require('./services/userService');
 
