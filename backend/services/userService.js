@@ -9,8 +9,8 @@ class userService {
         return this.userRepository.getAllUsers();
     }
 
-    async getUserById(id) {
-        const user = this.userRepository.getUserById(id);
+    async getUserById(uuid) {
+        const user = this.userRepository.getUserById(uuid);
         if (!user) {
             throw new Error('User not found');
         }
@@ -24,16 +24,16 @@ class userService {
         return await this.userRepository.createUser(user);
     }
 
-    async updateUser(id, user) {
-        const updateUser = await this.userRepository.updateUser(id, user);
+    async updateUser(uuid, user) {
+        const updateUser = await this.userRepository.updateUser(uuid, user);
         if (!updateUser) {
             throw new Error('User not found');
         }
         return updateUser;
     }
 
-    async deleteUser(id) {
-        const success = await this.userRepository.deleteUser(id);
+    async deleteUser(uuid) {
+        const success = await this.userRepository.deleteUser(uuid);
         if (!success) {
             throw new Error('User not found');
         }

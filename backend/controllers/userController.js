@@ -49,7 +49,7 @@ class userController {
         }
     }
 
-    async deleteUser(req, res) {
+    deleteUser = async (req, res) => {
         const uuid = req.params.uuid;
 
         try {
