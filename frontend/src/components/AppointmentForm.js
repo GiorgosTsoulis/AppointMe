@@ -1,7 +1,6 @@
 import '../styles/AppointmentForm.css';
 
 const AppointmentForm = () => {
-
   const generateTimeOptions = () => {
     const times = [];
     for (let hour = 0; hour < 24; hour++) {

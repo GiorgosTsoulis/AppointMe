@@ -16,7 +16,7 @@ app.get('/appointme/staff/:uuid', staffCtrl.getStaffById);
 app.post('/appointme/staff', staffCtrl.createStaff);
 app.put('/appointme/staff/:uuid', staffCtrl.updateStaff);
 app.delete('/appointme/staff/:uuid', staffCtrl.deleteStaff);
-app.get('/appointme/staff/:uuid/appointments', staffCtrl.getAppointmentsByStaffId);
+app.get('/appointme/staff/:uuid/appointments', staffCtrl.getAppointments);
 
 app.get('/appointme/customers', customerCtrl.getAllCustomers);
 app.get('/appointme/customers/:uuid', customerCtrl.getCustomerById);
@@ -43,7 +43,7 @@ app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
 app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);
 
 app.listen({ port: 5000 }, async () => {
-    console.log('Server running on http://localhost:5000');
+    console.log('Server running on http://localhost:5000/appointme');
     await sequelize.authenticate();
     console.log('Database connected!');
 });
