@@ -2,13 +2,12 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    static associate({ Store, Appointment, Customer, Staff, Admin }) {
-      // Define associations here
-      this.hasMany(Appointment, { foreignKey: 'customerId', as: 'appointments' });
-      this.hasMany(Store, { foreignKey: 'admin', as: 'stores' });
-      this.hasOne(Customer, { foreignKey: 'userId', as: 'customer' });
-      this.hasOne(Staff, { foreignKey: 'userId', as: 'staff' });
-      this.hasOne(Admin, { foreignKey: 'userId', as: 'admin' });
+    static associate(models) {
+      this.hasMany(models.Appointment, { foreignKey: 'customerId', as: 'appointments' });
+      this.hasMany(models.Store, { foreignKey: 'adminId', as: 'stores' });
+      this.hasOne(models.Customer, { foreignKey: 'userId', as: 'customer' });
+      this.hasOne(models.Staff, { foreignKey: 'userId', as: 'staff' });
+      this.hasOne(models.Admin, { foreignKey: 'userId', as: 'admin' });
     }
 
     toJSON() {
@@ -22,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
       uuid: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
         allowNull: false
       },
       userId: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
         type: DataTypes.INTEGER
       },
       username: {
