@@ -6,8 +6,8 @@ import ProfileCards from './ProfileCards';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
-    const [location, setLocation] = useState('');
-    const [service, setService] = useState('');
+    const [location] = useState('');
+    const [service] = useState('');
     const [locations, setLocations] = useState([]);
     const [services, setServices] = useState([]);
     const [profiles, setProfiles] = useState([]);

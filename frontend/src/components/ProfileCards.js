@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import defaultProfile from '../img/default-pfp.jpg';
 import '../styles/ProfileCards.css';
-import { useState, useEffect } from 'react';
+
 
 const ProfileCards = ({ profile }) => {
     const { username, location, service, profileImage } = profile;
