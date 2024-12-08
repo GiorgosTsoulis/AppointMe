@@ -2,29 +2,21 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('Stores', {
+    await queryInterface.createTable('Customers', {
       uuid: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        allowNull: false,
       },
-      storeId: {
+      customerId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      adminId: {
-        type: DataTypes.INTEGER
-      },
-      name: {
-        type: DataTypes.STRING
-      },
-      location: {
-        type: DataTypes.STRING
-      },
-      service: {
-        type: DataTypes.STRING
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('Stores');
+    await queryInterface.dropTable('Customers');
   }
 };

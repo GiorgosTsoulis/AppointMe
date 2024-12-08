@@ -1,25 +1,39 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert('Users', [
+      {
+        uuid: '11111111-1111-1111-1111-111111111111',
+        username: 'admin',
+        email: 'admin@example.com',
+        password: 'admin123',
+        role: 'Admin',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        uuid: '22222222-2222-2222-2222-222222222222',
+        username: 'john_doe',
+        email: 'john@example.com',
+        password: 'password123',
+        role: 'Customer',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        uuid: '33333333-3333-3333-3333-333333333333',
+        username: 'jane_staff',
+        email: 'jane@example.com',
+        password: 'password123',
+        role: 'Staff',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };

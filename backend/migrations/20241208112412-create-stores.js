@@ -2,26 +2,33 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('Staffs', {
+    await queryInterface.createTable('Stores', {
       uuid: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        allowNull: false,
       },
-      staffId: {
+      storeId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
       },
-      storeId: {
-        type: DataTypes.INTEGER
+      adminId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
-      userId: {
-        type: DataTypes.INTEGER
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
-      serviceType: {
-        type: DataTypes.STRING
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      service: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('Staffs');
+    await queryInterface.dropTable('Stores');
   }
 };

@@ -6,7 +6,7 @@ module.exports = {
       uuid: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        allowNull: false,
       },
       appointmentId: {
         allowNull: false,
@@ -15,19 +15,33 @@ module.exports = {
         type: DataTypes.INTEGER
       },
       customerId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       storeId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
-      appointmentDate: {
-        type: DataTypes.DATE
+      staffId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       serviceType: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      appointmentDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+      },
+      appointmentTime: {
+        type: DataTypes.TIME,
+        allowNull: false
       },
       status: {
-        type: DataTypes.STRING
+        type: DataTypes.ENUM('Pending', 'Confirmed', 'Cancelled'),
+        allowNull: false,
+        defaultValue: 'Pending'
       },
       createdAt: {
         allowNull: false,
