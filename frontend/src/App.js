@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import ClientNavbar from './components/ClientNavbar';
 import Home from './components/Home';
 import AppointmentForm from './components/AppointmentForm';
-
+import { motion } from "framer-motion";
 
 function App() {
   return (
@@ -12,8 +12,23 @@ function App() {
       <ClientNavbar />
       <div className='content'>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/book' element={<AppointmentForm />} />
+          <Route path='/' element={
+            <motion.div
+              animate={{ x: 0 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              <Home />
+            </motion.div>
+          } />
+          <Route path='/book' element={
+            <motion.div
+              animate={{ x: 600 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              <AppointmentForm />
+            </motion.div>
+          }
+          />
         </Routes>
       </div>
     </div>
