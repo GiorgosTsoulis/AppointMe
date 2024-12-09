@@ -7,24 +7,28 @@ class userRepository {
         return this.userModel.findAll();
     }
 
-    async getUserById(uuid) {
-        return this.userModel.findOne({ where: { uuid } });
+    async getUserById(userId) {
+        return this.userModel.findOne({ where: { userId } });
+    }
+
+    async getUsersByRole(role) {
+        return this.userModel.findAll({ where: { role } });
     }
 
     async createUser(user) {
         return this.userModel.create(user);
     }
 
-    async updateUser(uuid, user) {
-        const userToUpdate = await this.userModel.findOne({ where: { uuid } });
+    async updateUser(userId, user) {
+        const userToUpdate = await this.userModel.findOne({ where: { userId } });
         if (user) {
             return userToUpdate.update(user);
         }
         return null;
     }
 
-    async deleteUser(uuid) {
-        const user = await this.userModel.findOne({ where: { uuid } });
+    async deleteUser(userId) {
+        const user = await this.userModel.findOne({ where: { userId } });
         if (user) {
             return user.destroy();
         }

@@ -37,6 +37,10 @@ class storeService {
         }
         return success;
     }
+
+    async getAllLocations() {
+        return this.storeRepository.getAllLocations();
+    }
 }
 
 module.exports = storeService;

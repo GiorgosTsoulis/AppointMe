@@ -60,6 +60,16 @@ class storeController {
             res.status(500).json(error);
         }
     }
+
+    getAllLocations = async (req, res) => {
+        try {
+            const locations = await this.storeService.getAllLocations();
+            res.json(locations);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = storeController;

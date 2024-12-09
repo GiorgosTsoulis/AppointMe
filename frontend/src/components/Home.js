@@ -1,53 +1,44 @@
 import React from 'react';
-import axiosInstance from '../axiosConfig'
+import axiosInstance from '../axiosConfig';
 import '../styles/Home.css';
 import { Form, Button } from 'react-bootstrap';
 import ProfileCards from './ProfileCards';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
-    const [location] = useState('');
-    const [service] = useState('');
-    const [locations, setLocations] = useState([]);
-    const [services, setServices] = useState([]);
+    const [stores, setStores] = useState([]);
+    const [service, setService] = useState('');
+    const [location, setLocation] = useState('');
     const [profiles, setProfiles] = useState([]);
 
     useEffect(() => {
-        const fetchLocations = async () => {
+        const fetchStores = async () => {
             try {
-                const response = await axiosInstance.get('/locations');
-                setLocations(response.data);
-            }
-            catch (error) {
-                console.error('Error fetching locations:', error);
+                const response = await axiosInstance.get('/stores');
+                setStores(response.data);
+            } catch (error) {
+                console.error('Error fetching stores:', error);
             }
         }
-
-        const fetchServices = async () => {
-            try {
-                const response = await axiosInstance.get('/services');
-                setServices(response.data);
-            }
-            catch (error) {
-                console.error('Error fetching services:', error);
-            }
-        }
-
-        fetchLocations();
-        fetchServices();
+        fetchStores();
     }, []);
 
     const handleSearch = async () => {
         try {
-            const response = await axiosInstance.get('/profiles', {
-                params: { location, service }
-            });
+            const params = {};
+            if (location) params.location = location;
+            if (service) params.service = service;
+
+            const response = await axiosInstance.get('/stores', { params });
             setProfiles(response.data);
+        } catch (error) {
+            console.error('Error fetching profiles:', error);
         }
-        catch (error) {
-            console.error('Error fetching profiles:', error)
-        }
-    }
+    };
+
+    const uniqueLocations = [...new Set(stores.map(store => store.location))];
+    const uniqueServices = [...new Set(stores.map(store => store.service))];
+
 
     return (
         <div className="home">
@@ -55,26 +46,32 @@ const Home = () => {
                 <span id="slogan">Book your appointments with ease</span>
             </div>
             <div className="search">
-                <Form.Select id="location" aria-label="location" defaultValue="">
+                <Form.Select id="location" aria-label="location" defaultValue="" onChange={(e) => setLocation(e.target.value)}>
                     <option value="" disabled hidden>Location</option>
-                    {locations.map(location => (
-                        <option key={location.uuid} value={location.uuid}>{location.name}</option>))
-                    }
+                    {uniqueLocations.map((location, index) =>
+                        <option key={index} value={location}>{location}</option>
+                    )}
                 </Form.Select>
-                <Form.Select id="service" aria-label="service" defaultValue="">
+
+                <Form.Select id="service" aria-label="service" defaultValue="" onChange={(e) => setService(e.target.value)}>
                     <option value="" disabled hidden>Service</option>
-                    {services.map(service => (
-                        <option key={service.uuid} value={service.uuid}>{service.name}</option>))
-                    }
+                    {uniqueServices.map((service, index) =>
+                        <option key={index} value={service}>{service}</option>
+                    )}
                 </Form.Select>
                 <Button variant="primary" onClick={handleSearch}>Search</Button>
             </div>
-            <div className='profiles'>
-                {profiles.map(profile => (
-                    <ProfileCards key={profile.uuid} profile={profile} />))}
+            <div className="profiles">
+                {profiles.length > 0 ? (
+                    profiles.map((profile) => (
+                        <ProfileCards key={profile.uuid} profile={profile} />
+                    ))
+                ) : (
+                    <p>No profiles to display. Please search to find profiles.</p>
+                )}
             </div>
         </div >
     );
-}
+};
 
 export default Home;

@@ -29,6 +29,10 @@ class storeRepository {
             return store.destroy();
         }
     }
+
+    async getAllLocations() {
+        return this.storeModel.findAll({ attributes: ['location'], group: ['location'] });
+    }
 }
 
 module.exports = storeRepository;

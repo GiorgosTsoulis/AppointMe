@@ -7,12 +7,20 @@ class userService {
         return this.userRepository.getAllUsers();
     }
 
-    async getUserById(uuid) {
-        const user = this.userRepository.getUserById(uuid);
+    async getUserById(userId) {
+        const user = this.userRepository.getUserById(userId);
         if (!user) {
             throw new Error('User not found');
         }
         return user;
+    }
+
+    async getUsersByRole(role) {
+        const users = this.userRepository.getUsersByRole(role);
+        if (!users) {
+            throw new Error('Users not found');
+        }
+        return users;
     }
 
     async createUser(user) {
@@ -22,16 +30,16 @@ class userService {
         return await this.userRepository.createUser(user);
     }
 
-    async updateUser(uuid, user) {
-        const updateUser = await this.userRepository.updateUser(uuid, user);
+    async updateUser(userId, user) {
+        const updateUser = await this.userRepository.updateUser(userId, user);
         if (!updateUser) {
             throw new Error('User not found');
         }
         return updateUser;
     }
 
-    async deleteUser(uuid) {
-        const success = await this.userRepository.deleteUser(uuid);
+    async deleteUser(userId) {
+        const success = await this.userRepository.deleteUser(userId);
         if (!success) {
             throw new Error('User not found');
         }
