@@ -11,27 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Appointment, { foreignKey: 'storeId', as: 'appointments' });
-      this.belongsTo(models.Admin, { foreignKey: 'adminId', as: 'admin' });
+      this.belongsTo(models.User, { foreignKey: 'adminId', as: 'admin', constraints: false, scope: { role: 'Admin' } });
     }
 
     toJSON() {
-      return { ...this.get(), storeId: undefined, adminId: undefined }
+      const attributes = { ...this.get() };
+      delete attributes.storeId;
+      delete attributes.adminId;
+      return attributes;
     }
   }
   Store.init({
-    uuid: {
+    storeId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      allowNull: false
-    },
-    storeId: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     adminId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false
     },
     name: {

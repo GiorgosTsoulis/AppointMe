@@ -10,26 +10,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsTo(models.User, { foreignKey: 'customerId', as: 'customer' });
+      this.belongsTo(models.User, { foreignKey: 'customerId', as: 'customer', constraints: false, scope: { role: 'Customer' } });
       this.belongsTo(models.Store, { foreignKey: 'storeId', as: 'store' });
-      this.belongsTo(models.Staff, { foreignKey: 'staffId', as: 'staff' });
+      this.belongsTo(models.User, { foreignKey: 'staffId', as: 'staff', constraints: false, scope: { role: 'Staff' } });
     }
 
     toJSON() {
-      return { ...this.get(), appointmentId: undefined, customerId: undefined, storeId: undefined, staffId: undefined }
+      const attributes = { ...this.get() };
+      delete attributes.appointmentId;
+      delete attributes.customerId;
+      delete attributes.storeId;
+      delete attributes.staffId;
+      return attributes;
     }
 
   }
   Appointment.init({
-    uuid: {
+    appointmentId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false
-    },
-    appointmentId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
     },
     customerId: {
       type: DataTypes.INTEGER,

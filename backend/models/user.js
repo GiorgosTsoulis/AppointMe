@@ -5,9 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Appointment, { foreignKey: 'customerId', as: 'appointments' });
       this.hasMany(models.Store, { foreignKey: 'adminId', as: 'stores' });
-      this.hasOne(models.Customer, { foreignKey: 'userId', as: 'customer' });
-      this.hasOne(models.Staff, { foreignKey: 'userId', as: 'staff' });
-      this.hasOne(models.Admin, { foreignKey: 'userId', as: 'admin' });
     }
 
     toJSON() {
@@ -18,16 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      uuid: {
+      userId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-        allowNull: false
-      },
-      userId: {
         allowNull: false,
-        autoIncrement: true,
-        type: DataTypes.INTEGER
+        primaryKey: true
       },
       username: {
         type: DataTypes.STRING,
@@ -48,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       role: {
-        type: DataTypes.ENUM('Customer', 'Admin'),
+        type: DataTypes.ENUM('Customer', 'Admin', 'Staff'),
         allowNull: false,
       },
     },
