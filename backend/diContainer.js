@@ -1,4 +1,4 @@
-const { User, Store, Appointment } = require('./models');
+const { User, Store, Appointment, Staff } = require('./models');
 
 const userRepository = require('./repositories/userRepository');
 const storeRepository = require('./repositories/storeRepository');
@@ -13,7 +13,7 @@ const storeController = require('./controllers/storeController');
 const appointmentController = require('./controllers/appointmentController');
 
 const userRepo = new userRepository(User);
-const storeRepo = new storeRepository(Store);
+const storeRepo = new storeRepository(Store, Staff);
 const appointmentRepo = new appointmentRepository(Appointment);
 
 const userServ = new userService(userRepo);

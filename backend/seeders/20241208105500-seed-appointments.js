@@ -7,10 +7,10 @@ module.exports = {
     await queryInterface.bulkInsert('Appointments', [
       {
         appointmentId: uuidv4(),
-        customerId: '00117666-6827-4a45-94ac-9f94cda0ff33',
-        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e',
-        staffId: '275d05a0-a33a-4f35-a06c-0912af83256d',
-        serviceId: '05374bbf-1202-4fcb-b877-92c1f606ae94',
+        customerId: '6519ceb3-1f17-4fce-88de-5f9ed67c7efa',
+        storeId: '5f0a984b-151b-434e-b514-935adf1b9c1b',
+        staffId: '67dba691-a13f-4ce0-afdb-2cbae8b265dd',
+        serviceId: '4b3c3138-a2d0-4ffc-992b-da707866087e',
         appointmentDate: new Date(),
         appointmentTime: '10:00:00',
         status: 'Pending',

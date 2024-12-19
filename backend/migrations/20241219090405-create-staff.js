@@ -36,6 +36,6 @@ module.exports = {
   },
 
   async down(queryInterface, DataTypes) {
-
+    await queryInterface.dropTable('Staff');
   }
 };

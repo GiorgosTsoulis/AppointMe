@@ -8,7 +8,7 @@ module.exports = {
     await queryInterface.bulkInsert('Services', [
       {
         serviceId: uuidv4(),
-        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e',
+        storeId: '5f0a984b-151b-434e-b514-935adf1b9c1b',
         name: 'Haircut',
         duration: 30,
         price: 20,
@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         serviceId: uuidv4(),
-        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e',
+        storeId: '5f0a984b-151b-434e-b514-935adf1b9c1b',
         name: 'Shampoo',
         duration: 15,
         price: 10,
@@ -26,7 +26,7 @@ module.exports = {
       },
       {
         serviceId: uuidv4(),
-        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e',
+        storeId: '5f0a984b-151b-434e-b514-935adf1b9c1b',
         name: 'Hair Color',
         duration: 60,
         price: 50,

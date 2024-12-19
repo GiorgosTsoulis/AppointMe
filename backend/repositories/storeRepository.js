@@ -1,6 +1,7 @@
 class storeRepository {
-    constructor(storeModel) {
+    constructor(storeModel, staffModel) {
         this.storeModel = storeModel;
+        this.staffModel = staffModel;
     }
 
     async getAllStores() {
@@ -9,6 +10,10 @@ class storeRepository {
 
     async getStoreById(uuid) {
         return this.storeModel.findOne({ where: { uuid } });
+    }
+
+    async getStaffByStoreId(storeId) {
+        return this.staffModel.findAll({ where: { storeId } });
     }
 
     async getAllServices() {

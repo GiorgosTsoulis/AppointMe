@@ -15,6 +15,14 @@ class storeService {
         return store;
     }
 
+    async getStaffByStoreId(storeId) {
+        const staff = await this.storeRepository.getStaffByStoreId(storeId);
+        if (!staff) {
+            throw new Error('Staff not found');
+        }
+        return staff
+    }
+
     async getAllServices() {
         const services = await this.storeRepository.getAllServices();
         if (!services) {

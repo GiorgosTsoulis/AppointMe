@@ -7,7 +7,7 @@ module.exports = {
     await queryInterface.bulkInsert('Stores', [
       {
         storeId: uuidv4(),
-        adminId: '924e8a57-da10-42a4-b760-398e7c69b9ac',
+        adminId: 'bde4767c-2585-4cd1-801c-c773459b6a7f',
         name: 'Barber Shop',
         location: '123 Main St',
         service: 'Barber',

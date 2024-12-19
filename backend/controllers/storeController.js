@@ -25,6 +25,18 @@ class storeController {
         }
     }
 
+    getStaffByStoreId = async (req, res) => {
+        const storeId = req.params.uuid;
+
+        try {
+            const staff = await this.storeService.getStaffByStoreId(storeId);
+            res.json(staff);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
     getAllServices = async (req, res) => {
         try {
             const services = await this.storeService.getAllServices();

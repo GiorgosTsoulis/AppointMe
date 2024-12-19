@@ -7,9 +7,9 @@ module.exports = {
     await queryInterface.bulkInsert('Staff', [
       {
         staffId: uuidv4(),
-        userId: '275d05a0-a33a-4f35-a06c-0912af83256d', // Replace with actual UUID from Users table
-        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e', // Replace with actual UUID from Stores table
-        position: '05374bbf-1202-4fcb-b877-92c1f606ae94',
+        userId: '67dba691-a13f-4ce0-afdb-2cbae8b265dd',
+        storeId: '5f0a984b-151b-434e-b514-935adf1b9c1b',
+        serviceId: '4b3c3138-a2d0-4ffc-992b-da707866087e',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
