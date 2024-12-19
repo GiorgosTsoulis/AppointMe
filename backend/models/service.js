@@ -2,50 +2,50 @@
 const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  class Staff extends Model {
+  class Service extends Model {
     static associate(models) {
       this.belongsTo(models.Store, { foreignKey: 'storeId', as: 'store' });
-      this.hasMany(models.Appointment, { foreignKey: 'staffId', as: 'appointments' });
-      this.belongsTo(models.Service, { foreignKey: 'serviceId', as: 'service' });
-      this.belongsTo(models.User, { foreignKey: 'userId', as: 'user', constraints: false, scope: { role: 'Staff' } });
+      this.hasMany(models.Appointment, { foreignKey: 'serviceId', as: 'appointments' });
     }
 
     toJSON() {
       const attributes = { ...this.get() };
-      delete attributes.staffId;
-      delete attributes.userId;
-      delete attributes.storeId;
       delete attributes.serviceId;
+      delete attributes.storeId;
       return attributes;
     }
   }
 
-  Staff.init(
+  Service.init(
     {
-      staffId: {
+      serviceId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: false,
-      },
-      userId: {
-        type: DataTypes.UUID,
         allowNull: false,
       },
       storeId: {
         type: DataTypes.UUID,
         allowNull: false,
       },
-      serviceId: {
-        type: DataTypes.UUID,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+      },
+      duration: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
     },
     {
       sequelize,
-      modelName: 'Staff',
+      modelName: 'Service',
     }
   );
 
-  return Staff;
+  return Service;
 };

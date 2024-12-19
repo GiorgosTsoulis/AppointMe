@@ -25,6 +25,16 @@ class storeController {
         }
     }
 
+    getAllServices = async (req, res) => {
+        try {
+            const services = await this.storeService.getAllServices();
+            res.json(services);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
     createStore = async (req, res) => {
         const store = req.body;
 

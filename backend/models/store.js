@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.hasMany(models.Appointment, { foreignKey: 'storeId', as: 'appointments' });
       this.belongsTo(models.User, { foreignKey: 'adminId', as: 'admin', constraints: false, scope: { role: 'Admin' } });
+      this.hasMany(models.Service, { foreignKey: 'storeId', as: 'services' });
+      this.hasMany(models.Staff, { foreignKey: 'storeId', as: 'staff' });
     }
 
     toJSON() {

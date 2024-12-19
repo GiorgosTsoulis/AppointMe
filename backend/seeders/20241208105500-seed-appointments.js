@@ -7,10 +7,10 @@ module.exports = {
     await queryInterface.bulkInsert('Appointments', [
       {
         appointmentId: uuidv4(),
-        customerId: '959587fb-6912-460c-83e3-ab0df96249f1',
-        storeId: '97f291ce-678f-4a4d-a4d6-48d6cf8b1a96',
-        staffId: 'ad621993-d585-48ee-81a5-725efb1500b2',
-        serviceType: 'Haircut',
+        customerId: '00117666-6827-4a45-94ac-9f94cda0ff33',
+        storeId: '4e07b61f-d17b-4ee2-af58-a0874ce4fd2e',
+        staffId: '275d05a0-a33a-4f35-a06c-0912af83256d',
+        serviceId: '05374bbf-1202-4fcb-b877-92c1f606ae94',
         appointmentDate: new Date(),
         appointmentTime: '10:00:00',
         status: 'Pending',

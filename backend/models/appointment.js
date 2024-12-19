@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.User, { foreignKey: 'customerId', as: 'customer', constraints: false, scope: { role: 'Customer' } });
       this.belongsTo(models.Store, { foreignKey: 'storeId', as: 'store' });
       this.belongsTo(models.User, { foreignKey: 'staffId', as: 'staff', constraints: false, scope: { role: 'Staff' } });
+      this.belongsTo(models.Service, { foreignKey: 'serviceId', as: 'service' });
     }
 
     toJSON() {
@@ -44,8 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    serviceType: {
-      type: DataTypes.STRING,
+    serviceId: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
     appointmentDate: {

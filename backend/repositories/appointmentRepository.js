@@ -11,8 +11,20 @@ class appointmentRepository {
         return this.appointmentModel.findOne({ where: { uuid } });
     }
 
-    async getAppointmentsByStaffId(uuid) {
+    async getAppointmentByStaffId(uuid) {
         return this.appointmentModel.findAll({ where: { staffId: uuid } });
+    }
+
+    async getAppointmentByStoreId(uuid) {
+        return this.appointmentModel.findAll({ where: { storeId: uuid } });
+    }
+
+    async getAppointmentByUserId(uuid) {
+        return this.appointmentModel.findAll({ where: { customerId: uuid } });
+    }
+
+    async getAppointmentByDate(date) {
+        return this.appointmentModel.findAll({ where: { appointmentDate: date } });
     }
 
     async createAppointment(appointment) {

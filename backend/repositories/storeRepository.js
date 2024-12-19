@@ -11,6 +11,10 @@ class storeRepository {
         return this.storeModel.findOne({ where: { uuid } });
     }
 
+    async getAllServices() {
+        return this.storeModel.findAll({ attributes: ['service'], group: ['service'] });
+    }
+
     async createStore(store) {
         return this.storeModel.create(store);
     }

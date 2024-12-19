@@ -25,6 +25,54 @@ class appointmentController {
         }
     }
 
+    getAppointmentByStaffId = async (req, res) => {
+        const uuid = req.params.uuid;
+
+        try {
+            const appointments = await this.appointmentService.getAppointmentByStaffId(uuid);
+            res.json(appointments);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    getAppointmentByStoreId = async (req, res) => {
+        const uuid = req.params.uuid;
+
+        try {
+            const appointments = await this.appointmentService.getAppointmentByStoreId(uuid);
+            res.json(appointments);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    getAppointmentByUserId = async (req, res) => {
+        const uuid = req.params.uuid;
+
+        try {
+            const appointments = await this.appointmentService.getAppointmentByUserId(uuid);
+            res.json(appointments);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    getAppointmentByDate = async (req, res) => {
+        const date = req.params.date;
+
+        try {
+            const appointments = await this.appointmentService.getAppointmentByDate(date);
+            res.json(appointments);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
     createAppointment = async (req, res) => {
         const appointment = req.body;
 

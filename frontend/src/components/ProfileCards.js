@@ -10,7 +10,7 @@ const ProfileCards = ({ profile }) => {
     const navigate = useNavigate();
 
     const handleBook = () => {
-        navigate('/book');
+        navigate(`/store/${profile.uuid}/book`);
     }
 
     return (

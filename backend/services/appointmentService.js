@@ -15,6 +15,39 @@ class appointmentService {
         return appointment;
     }
 
+    async getAppointmentByStaffId(uuid) {
+        const appointments = this.appointmentRepository.getAppointmentByStaffId(uuid);
+        if (!appointments) {
+            throw new Error('Appointments not found');
+        }
+        return appointments;
+    }
+
+    async getAppointmentByStoreId(uuid) {
+        const appointments = this.appointmentRepository.getAppointmentByStoreId(uuid);
+        if (!appointments) {
+            throw new Error('Appointments not found');
+        }
+        return appointments;
+    }
+
+    async getAppointmentByUserId(uuid) {
+        const appointments = this.appointmentRepository.getAppointmentByUserId(uuid);
+        if (!appointments) {
+            throw new Error('Appointments not found');
+        }
+        return appointments;
+    }
+
+    async getAppointmentByDate(date) {
+        const appointments = this.appointmentRepository.getAppointmentByDate(date);
+        if (!appointments) {
+            throw new Error('Appointments not found');
+        }
+        return appointments;
+    }
+
+
     async createAppointment(appointment) {
         if (!appointment.customerId || !appointment.staffId || !appointment.storeId || !appointment.appointmentDate || !appointment.appointmentTime || !appointment.serviceType) {
             throw new Error('Invalid appointment data');

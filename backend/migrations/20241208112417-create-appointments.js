@@ -21,8 +21,8 @@ module.exports = {
         type: DataTypes.UUID,
         allowNull: false
       },
-      serviceType: {
-        type: DataTypes.STRING,
+      serviceId: {
+        type: DataTypes.UUID,
         allowNull: false
       },
       appointmentDate: {

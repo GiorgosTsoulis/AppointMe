@@ -20,7 +20,7 @@ function App() {
               <Home />
             </motion.div>
           } />
-          <Route path='/book' element={
+          <Route path='/store/:uuid/book' element={
             <motion.div
               animate={{ x: 600 }}
               transition={{ type: "spring", stiffness: 100 }}

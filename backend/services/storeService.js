@@ -15,6 +15,14 @@ class storeService {
         return store;
     }
 
+    async getAllServices() {
+        const services = await this.storeRepository.getAllServices();
+        if (!services) {
+            throw new Error('No services found');
+        }
+        return services;
+    }
+
     async createStore(store) {
         if (!store.name || !store.location || !store.service) {
             throw new Error('Invalid store data');
