@@ -49,11 +49,14 @@ class appointmentService {
 
 
     async createAppointment(appointment) {
-        if (!appointment.customerId || !appointment.staffId || !appointment.storeId || !appointment.appointmentDate || !appointment.appointmentTime || !appointment.serviceType) {
+
+        if (!customerId || !staffId || !storeId || !appointmentDate || !appointmentTime || !serviceId) {
             throw new Error('Invalid appointment data');
         }
+
         return await this.appointmentRepository.createAppointment(appointment);
     }
+
 
     async updateAppointment(uuid, appointment) {
         const updateAppointment = await this.appointmentRepository.updateAppointment(uuid, appointment);

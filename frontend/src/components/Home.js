@@ -15,6 +15,7 @@ const Home = () => {
         const fetchStores = async () => {
             try {
                 const response = await axiosInstance.get('/stores');
+                console.log(response.data);
                 setStores(response.data);
             } catch (error) {
                 console.error('Error fetching stores:', error);
@@ -30,6 +31,19 @@ const Home = () => {
             if (service) params.service = service;
 
             const response = await axiosInstance.get('/stores', { params });
+            const handleSearch = async () => {
+                try {
+                    const params = {};
+                    if (location) params.location = location;
+                    if (service) params.service = service;
+
+                    const response = await axiosInstance.get('/stores', { params });
+                    console.log(response.data)
+                    setProfiles(response.data);
+                } catch (error) {
+                    console.error('Error fetching profiles:', error);
+                }
+            };
             setProfiles(response.data);
         } catch (error) {
             console.error('Error fetching profiles:', error);
@@ -38,7 +52,6 @@ const Home = () => {
 
     const uniqueLocations = [...new Set(stores.map(store => store.location))];
     const uniqueServices = [...new Set(stores.map(store => store.service))];
-
 
     return (
         <div className="home">
@@ -64,7 +77,7 @@ const Home = () => {
             <div className="profiles">
                 {profiles.length > 0 ? (
                     profiles.map((profile) => (
-                        <ProfileCards key={profile.uuid} profile={profile} />
+                        <ProfileCards key={profile.storeId} profile={profile} />
                     ))
                 ) : (
                     <p>No profiles to display. Please search to find profiles.</p>

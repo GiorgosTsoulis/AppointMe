@@ -14,10 +14,10 @@ class storeController {
     }
 
     getStoreById = async (req, res) => {
-        const uuid = req.params.uuid;
+        const storeId = req.params.uuid;
 
         try {
-            const store = await this.storeService.getStoreById(uuid);
+            const store = await this.storeService.getStoreById(storeId);
             res.json(store);
         } catch (error) {
             console.error(error);
@@ -40,6 +40,18 @@ class storeController {
     getAllServices = async (req, res) => {
         try {
             const services = await this.storeService.getAllServices();
+            res.json(services);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    getServicesByStoreId = async (req, res) => {
+        const storeId = req.params.uuid;
+
+        try {
+            const services = await this.storeService.getServicesByStoreId(storeId);
             res.json(services);
         } catch (error) {
             console.error(error);

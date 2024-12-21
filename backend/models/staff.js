@@ -12,10 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 
     toJSON() {
       const attributes = { ...this.get() };
-      delete attributes.staffId;
-      delete attributes.userId;
-      delete attributes.storeId;
-      delete attributes.serviceId;
       return attributes;
     }
   }

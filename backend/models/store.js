@@ -13,9 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
     toJSON() {
       const attributes = { ...this.get() };
-      delete attributes.storeId;
-      delete attributes.adminId;
-      return attributes;
+      return attributes
     }
   }
   Store.init({

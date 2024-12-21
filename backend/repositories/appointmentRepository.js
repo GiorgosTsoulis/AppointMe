@@ -1,6 +1,9 @@
 class appointmentRepository {
-    constructor(appointmentModel) {
+    constructor(appointmentModel, userModel, storeModel, serviceModel) {
         this.appointmentModel = appointmentModel;
+        this.userModel = userModel;
+        this.storeModel = storeModel;
+        this.serviceModel = serviceModel;
     }
 
     async getAllAppointments() {

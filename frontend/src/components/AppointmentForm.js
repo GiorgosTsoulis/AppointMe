@@ -23,6 +23,7 @@ const AppointmentForm = () => {
     const fetchStaffMembers = async () => {
       try {
         const response = await axiosInstance.get(`/store/${uuid}/staff`);
+        console.log(response.data);
         setStaffMembers(response.data);
       } catch (error) {
         console.error('Error fetching staff members:', error);
@@ -65,7 +66,8 @@ const AppointmentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post('/store/:uuid/bookappointment', formData);
+      console.log('Form Data:', formData);
+      const response = await axiosInstance.post(`/store/${uuid}/bookappointment`, formData);
       if (response.status === 200) {
         alert('Appointment booked successfully!');
       } else {
@@ -94,7 +96,7 @@ const AppointmentForm = () => {
         <select name='staff' value={formData.staff} onChange={handleChange}>
           <option value='' disabled hidden>Select Staff Member</option>
           {staffMembers.map((staff, index) => (
-            <option key={index} value={staff.uuid}>{staff.name}</option>
+            <option key={index} value={staff.staffId}>{staff.user.username}</option>
           ))}
         </select>
 
@@ -102,7 +104,7 @@ const AppointmentForm = () => {
         <select name='service' value={formData.service} onChange={handleChange}>
           <option value='' disabled hidden>Select Service Type</option>
           {serviceTypes.map((service, index) => (
-            <option key={index} value={service.uuid}>{service.name}</option>
+            <option key={index} value={service.uuid}>{service.name} {service.price}$</option>
           ))}
         </select>
 

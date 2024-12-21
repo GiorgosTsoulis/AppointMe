@@ -7,8 +7,8 @@ class storeService {
         return this.storeRepository.getAllStores();
     }
 
-    async getStoreById(uuid) {
-        const store = this.storeRepository.getStoreById(uuid);
+    async getStoreById(storeId) {
+        const store = await this.storeRepository.getStoreById(storeId);
         if (!store) {
             throw new Error('Store not found');
         }
@@ -25,6 +25,14 @@ class storeService {
 
     async getAllServices() {
         const services = await this.storeRepository.getAllServices();
+        if (!services) {
+            throw new Error('No services found');
+        }
+        return services;
+    }
+
+    async getServicesByStoreId(storeId) {
+        const services = await this.storeRepository.getServicesByStoreId(storeId);
         if (!services) {
             throw new Error('No services found');
         }

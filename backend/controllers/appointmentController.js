@@ -74,7 +74,16 @@ class appointmentController {
     }
 
     createAppointment = async (req, res) => {
-        const appointment = req.body;
+        const { customerId, staffId, storeId, appointmentDate, appointmentTime, serviceType } = req.body;
+
+        const appointment = {
+            customerId,
+            staffId,
+            storeId,
+            appointmentDate,
+            appointmentTime,
+            serviceType
+        };
 
         try {
             const newAppointment = await this.appointmentService.createAppointment(appointment);
