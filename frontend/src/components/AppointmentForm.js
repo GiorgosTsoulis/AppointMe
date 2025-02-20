@@ -10,14 +10,15 @@ const AppointmentForm = () => {
     name: '',
     email: '',
     phone: '',
-    staff: '',
-    service: '',
+    staffId: '',
+    serviceId: '',
     date: '',
     time: ''
   });
 
   const [staffMembers, setStaffMembers] = useState([]);
   const [serviceTypes, setServiceTypes] = useState([]);
+  const [serviceId, setServiceId] = useState('');
 
   useEffect(() => {
     const fetchStaffMembers = async () => {
@@ -43,6 +44,7 @@ const AppointmentForm = () => {
     }
     fetchServiceTypes();
   }, []);
+
 
   const generateTimeOptions = () => {
     const times = [];
@@ -109,7 +111,7 @@ const AppointmentForm = () => {
         </select>
 
         <label>Date</label>
-        <input type="date" name='date' value={formData.date} on onChange={handleChange} />
+        <input type="date" name='date' value={formData.date} onChange={handleChange} />
 
         <label>Time</label>
         <select id="time" name='time' value={formData.time} onChange={handleChange}>
