@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const crypto = require('crypto');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
@@ -11,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       const attributes = { ...this.get() };
       delete attributes.password; // Never expose passwords
       return attributes;
+    }
+
+    validatePassword(password) {
+      const hash = crypto.createHash('sha256').update(password).digest('hex');
+      return this.password === hash;
     }
   }
   User.init(
