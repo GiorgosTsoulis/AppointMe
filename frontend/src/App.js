@@ -13,10 +13,10 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== '/' && <ClientNavbar />}
+      {location.pathname !== '/auth' && <ClientNavbar />}
       <div className='content'>
         <Routes>
-          <Route path='/' element={
+          <Route path='/auth' element={
             <SignIn />
           } />
 
@@ -24,7 +24,7 @@ function App() {
             <SignUp />
           } />
 
-          <Route path='/home' element={
+          <Route path='/' element={
             <motion.div
               animate={{ x: 0 }}
               transition={{ type: "spring", stiffness: 100 }}
@@ -34,7 +34,7 @@ function App() {
           } />
           <Route path='/store/:uuid/book' element={
             <motion.div
-              animate={{ x: 600 }}
+              animate={{ x: 0 }}
               transition={{ type: "spring", stiffness: 100 }}
             >
               <AppointmentForm />

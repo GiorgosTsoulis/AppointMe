@@ -9,7 +9,8 @@ const SignUp = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: "",
-        password: ""
+        password: "",
+        role: "Admin"
     });
 
     const handleChange = (e) => {
@@ -20,19 +21,21 @@ const SignUp = () => {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = axiosInstance.post('/users', formData);
-        if (response.status === 200) {
-            console.log('User created successfully');
-            navigate("/home");
-        } else {
-            console.error('Error creating user');
+        try {
+            const response = await axiosInstance.post('/users', formData);
+            if (response.status === 200) {
+                console.log('User created successfully');
+                navigate("/home");
+            } else {
+                console.error('Error creating user');
+                alert('An error occurred while signing up.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
             alert('An error occurred while signing up.');
         }
-
-
-
     };
 
     return (

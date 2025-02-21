@@ -31,25 +31,16 @@ body {
     margin: 0 auto;
 }
 
-#location {
-    margin-right: 1rem;
-    padding-right: 1rem;
-    border: 1px solid #85A98F;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-
-}
-
+#location,
 #service {
     margin-right: 1rem;
-    padding-right: 1rem;
+    padding: 0.5rem 1rem;
     border: 1px solid #85A98F;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: 500;
     color: #333;
+    width: 20em;
 }
 
 .profiles {

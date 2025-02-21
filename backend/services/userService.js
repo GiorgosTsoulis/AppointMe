@@ -24,7 +24,7 @@ class userService {
     }
 
     async createUser(user) {
-        if (!user.username || !user.email || !user.password) {
+        if (!user.username || !user.password) {
             throw new Error('Invalid user data');
         }
         return await this.userRepository.createUser(user);
