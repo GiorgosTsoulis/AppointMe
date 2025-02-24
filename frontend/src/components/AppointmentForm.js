@@ -88,8 +88,6 @@ const AppointmentForm = () => {
         <label>Name</label>
         <input type='text' name='name' value={formData.name} onChange={handleChange} placeholder="John Doe" />
 
-        <label>Email</label>
-        <input type='email' name='email' value={formData.email} onChange={handleChange} placeholder="johndoe@example.com" />
 
         <label>Phone Number</label>
         <input type='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder="" />

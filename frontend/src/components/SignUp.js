@@ -24,10 +24,10 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axiosInstance.post('/users', formData);
+            const response = await axiosInstance.post('/auth/signup', formData);
             if (response.status === 200) {
                 console.log('User created successfully');
-                navigate("/home");
+                navigate("/");
             } else {
                 console.error('Error creating user');
                 alert('An error occurred while signing up.');
@@ -71,7 +71,7 @@ const SignUp = () => {
                 </div>
 
                 <div className="footer">
-                    <p>Already have an account? <Link to="/">Sign In</Link></p>
+                    <p>Already have an account? <Link to="/auth/signup">Sign In</Link></p>
                 </div>
             </div>
         </div>

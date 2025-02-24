@@ -15,6 +15,10 @@ class userRepository {
         return this.userModel.findAll({ where: { role } });
     }
 
+    async getUserByUsername(username) {
+        return this.userModel.findOne({ where: { username } });
+    }
+
     async createUser(user) {
         return this.userModel.create(user);
     }

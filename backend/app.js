@@ -1,6 +1,6 @@
 const express = require('express');
 const { sequelize } = require('./models');
-const { userCtrl, storeCtrl, appointmentCtrl, staffCtrl } = require('./diContainer');
+const { userCtrl, storeCtrl, appointmentCtrl, authCtrl } = require('./diContainer');
 
 const app = express();
 const cors = require('cors');
@@ -10,6 +10,11 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000', // Allow requests from frontend
 }));
+
+// Auth Routes
+app.post('/appointme/auth/signin', authCtrl.signIn);
+app.post('/appointme/auth/signup', authCtrl.signUp);
+app.get('/appointme/auth/me', authCtrl.getMe);
 
 // Users Routes
 app.get('/appointme/users', userCtrl.getAllUsers);

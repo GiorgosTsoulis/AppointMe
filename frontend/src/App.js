@@ -7,6 +7,7 @@ import AppointmentForm from './components/AppointmentForm';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { motion } from "framer-motion";
+import UserProfile from './components/userProfile';
 
 function App() {
   const location = useLocation();
@@ -16,11 +17,11 @@ function App() {
       {location.pathname !== '/auth' && <ClientNavbar />}
       <div className='content'>
         <Routes>
-          <Route path='/auth' element={
+          <Route path='/auth/signin' element={
             <SignIn />
           } />
 
-          <Route path="/signup" element={
+          <Route path="/auth/signup" element={
             <SignUp />
           } />
 
@@ -41,6 +42,11 @@ function App() {
             </motion.div>
           }
           />
+
+          <Route path='/profile' element={
+            <UserProfile />
+          } />
+
         </Routes>
       </div>
     </div>

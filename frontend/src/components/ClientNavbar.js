@@ -1,10 +1,33 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-// import { AuthContext } from '../context/AuthContext';
+import { useState, useEffect } from 'react';
+import axiosInstance from '../axiosConfig';
 
 const ClientNavbar = () => {
-    // const { user } = useContext(AuthContext);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const token = localStorage.getItem('token');
+            const storedUsername = localStorage.getItem('username');
+            if (token && storedUsername) {
+                try {
+                    const response = await axiosInstance.get('/auth/me', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setIsAuthenticated(true);
+                    setUsername(storedUsername);
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                    setIsAuthenticated(false);
+                }
+            }
+        };
+        checkAuth();
+    }, []);
 
     return (
         <Navbar sticky="top" className="navbar" expand="md">
@@ -17,10 +40,10 @@ const ClientNavbar = () => {
                     <Nav.Link as={Link} to="/book">Book Appointment</Nav.Link>
                 </Nav>
                 <Nav>
-                    {user ? (
-                        <Nav.Link href="#profile" className="ml-auto">Hello, {user.username}</Nav.Link>
+                    {isAuthenticated ? (
+                        <Nav.Link as={Link} to="/profile" className="ml-auto">{username}</Nav.Link>
                     ) : (
-                        <Nav.Link as={Link} to="/auth" className="ml-auto">Sign Up/Sign In</Nav.Link>
+                        <Nav.Link as={Link} to="/auth/signin" className="ml-auto">Sign Up/Sign In</Nav.Link>
                     )}
                 </Nav>
             </Navbar.Collapse>

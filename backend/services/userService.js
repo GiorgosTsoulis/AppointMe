@@ -23,6 +23,11 @@ class userService {
         return users;
     }
 
+    async getUserByUsername(username) {
+        const user = await this.userRepository.getUserByUsername(username);
+        return user || null; // Return null if user is not found
+    }
+
     async createUser(user) {
         if (!user.username || !user.password) {
             throw new Error('Invalid user data');

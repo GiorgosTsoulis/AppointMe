@@ -14,6 +14,7 @@ const userController = require('./controllers/userController');
 const storeController = require('./controllers/storeController');
 const staffController = require('./controllers/staffController');
 const appointmentController = require('./controllers/appointmentController');
+const authController = require('./controllers/authController');
 
 const userRepo = new userRepository(User);
 const storeRepo = new storeRepository(Store, Staff, User, Service);
@@ -29,10 +30,12 @@ const userCtrl = new userController(userServ);
 const storeCtrl = new storeController(storeServ);
 const staffCtrl = new staffController(staffServ);
 const appointmentCtrl = new appointmentController(appointmentServ);
+const authCtrl = new authController(userServ);
 
 module.exports = {
     userCtrl,
     storeCtrl,
     staffCtrl,
-    appointmentCtrl
+    appointmentCtrl,
+    authCtrl
 }
