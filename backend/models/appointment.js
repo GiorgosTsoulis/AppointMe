@@ -30,15 +30,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     customerId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     storeId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     staffId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
     },
     serviceId: {
@@ -51,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     appointmentTime: {
       type: DataTypes.TIME,
+      allowNull: false,
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     status: {

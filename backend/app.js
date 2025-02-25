@@ -19,7 +19,9 @@ app.get('/appointme/auth/me', authCtrl.getMe);
 // Users Routes
 app.get('/appointme/users', userCtrl.getAllUsers);
 app.get('/appointme/users/:uuid', userCtrl.getUserById);
+app.get('/appointme/users/username/:username', userCtrl.getUserByUsername);
 app.get('/appointme/users/role/:role', userCtrl.getUsersByRole);
+app.get('/appointme/users/role/:username', userCtrl.getUserRoleByUsername);
 app.post('/appointme/users', userCtrl.createUser);
 app.put('/appointme/users/:uuid', userCtrl.updateUser);
 app.delete('/appointme/users/:uuid', userCtrl.deleteUser);

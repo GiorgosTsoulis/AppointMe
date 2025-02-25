@@ -12,20 +12,23 @@ export const checkAuth = async () => {
             console.log('Authenticated user:', response.data.username); // Debug log
             return {
                 isAuthenticated: true,
-                username: response.data.username
+                username: response.data.username,
+                role: response.data.role
             };
         } catch (error) {
             console.error('Error fetching user data:', error);
             return {
                 isAuthenticated: false,
-                username: ''
+                username: '',
+                role: ''
             };
         }
     } else {
         console.log('No token found'); // Debug log
         return {
             isAuthenticated: false,
-            username: ''
+            username: '',
+            role: ''
         };
     }
 };

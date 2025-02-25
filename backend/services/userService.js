@@ -25,7 +25,12 @@ class userService {
 
     async getUserByUsername(username) {
         const user = await this.userRepository.getUserByUsername(username);
-        return user || null; // Return null if user is not found
+        return user || null;
+    }
+
+    async getUserRoleByUsername(username) {
+        const user = await this.userRepository.getUserByUsername(username);
+        return user ? user.role : null;
     }
 
     async createUser(user) {

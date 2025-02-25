@@ -1,37 +1,39 @@
 import '../styles/AppointmentForm.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
 
 const AppointmentForm = () => {
+  const navigate = useNavigate();
   const { uuid } = useParams();
+  const [username, setUsername] = useState(localStorage.getItem('username') || '');
+  const [userId, setUserId] = useState('');
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    staffId: '',
-    serviceId: '',
+    customerId: '',
+    storeId: uuid,
+    staff: '',
+    service: '',
     date: '',
-    time: ''
+    time: '',
+    phoneNumber: ''
   });
 
   const [staffMembers, setStaffMembers] = useState([]);
   const [serviceTypes, setServiceTypes] = useState([]);
-  const [serviceId, setServiceId] = useState('');
 
   useEffect(() => {
     const fetchStaffMembers = async () => {
       try {
         const response = await axiosInstance.get(`/store/${uuid}/staff`);
-        console.log(response.data);
         setStaffMembers(response.data);
       } catch (error) {
         console.error('Error fetching staff members:', error);
       }
     }
     fetchStaffMembers();
-  }, []);
+  }, [uuid]);
 
   useEffect(() => {
     const fetchServiceTypes = async () => {
@@ -43,7 +45,19 @@ const AppointmentForm = () => {
       }
     }
     fetchServiceTypes();
-  }, []);
+  }, [uuid]);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await axiosInstance.get(`/users/username/${username}`);
+        setUserId(response.data.userId);
+      } catch (error) {
+        console.error('Error fetching user ID:', error);
+      }
+    }
+    fetchUserId();
+  }, [username]);
 
 
   const generateTimeOptions = () => {
@@ -67,11 +81,35 @@ const AppointmentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Find the staff ID and service ID based on the selected values
+    const selectedStaff = staffMembers.find(staff => staff.staffId === formData.staff);
+    const selectedService = serviceTypes.find(service => service.serviceId === formData.service);
+
+    const appointmentData = {
+      customerId: userId,
+      storeId: formData.storeId,
+      staffId: selectedStaff ? selectedStaff.staffId : '',
+      serviceId: selectedService ? selectedService.serviceId : '',
+      appointmentDate: formData.date,
+      appointmentTime: formData.time,
+      phoneNumber: formData.phoneNumber // Ensure the field name matches the backend expectation
+    };
+
+    console.log('From Data:', formData)
+    console.log('Appointment Data:', appointmentData);
+
+    // Check if all required fields are filled
+    if (!appointmentData.customerId || !appointmentData.storeId || !appointmentData.staffId || !appointmentData.serviceId || !appointmentData.appointmentDate || !appointmentData.appointmentTime || !appointmentData.phoneNumber) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
     try {
-      console.log('Form Data:', formData);
-      const response = await axiosInstance.post(`/store/${uuid}/bookappointment`, formData);
+      const response = await axiosInstance.post(`/store/${uuid}/bookappointment`, appointmentData);
       if (response.status === 200) {
         alert('Appointment booked successfully!');
+        navigate('/');
       } else {
         alert('Failed to book appointment.');
       }
@@ -86,11 +124,10 @@ const AppointmentForm = () => {
       <form onSubmit={handleSubmit}>
         <h2>Book an Appointment</h2>
         <label>Name</label>
-        <input type='text' name='name' value={formData.name} onChange={handleChange} placeholder="John Doe" />
-
+        <input type='text' name='name' value={username} onChange={handleChange} placeholder="John Doe" />
 
         <label>Phone Number</label>
-        <input type='phone' name='phone' value={formData.phone} onChange={handleChange} placeholder="" />
+        <input type='text' name='phoneNumber' value={formData.phoneNumber} onChange={handleChange} placeholder="Phone Number" />
 
         <label>Staff Member</label>
         <select name='staff' value={formData.staff} onChange={handleChange}>
@@ -104,7 +141,7 @@ const AppointmentForm = () => {
         <select name='service' value={formData.service} onChange={handleChange}>
           <option value='' disabled hidden>Select Service Type</option>
           {serviceTypes.map((service, index) => (
-            <option key={index} value={service.uuid}>{service.name} {service.price}$</option>
+            <option key={index} value={service.serviceId}>{service.name} {service.price}$</option>
           ))}
         </select>
 

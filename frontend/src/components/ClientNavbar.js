@@ -6,6 +6,7 @@ import { checkAuth } from '../utils/auth';
 const ClientNavbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
+    const [role, setRole] = useState('');
     const location = useLocation();
 
     const authenticate = async () => {
@@ -13,6 +14,7 @@ const ClientNavbar = () => {
         console.log('Auth Status:', authStatus); // Debug log
         setIsAuthenticated(authStatus.isAuthenticated);
         setUsername(authStatus.username);
+        setRole(authStatus.role);
     };
 
     useEffect(() => {
@@ -21,6 +23,7 @@ const ClientNavbar = () => {
 
     useEffect(() => {
         console.log('Username:', username); // Debug log
+        console.log('Role:', role); // Debug log
     }, [username]);
 
     return (
@@ -31,7 +34,14 @@ const ClientNavbar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/book">Book Appointment</Nav.Link>
+                    {role === 'Customer' && <Nav.Link as={Link} to="/myappointments">My Appointments</Nav.Link>}
+                    {role === 'Admin' && (
+                        <>
+                            <Nav.Link as={Link} to="/mystore">My Store</Nav.Link>
+                            <Nav.Link as={Link} to="/storeappointments">My Store Appointments</Nav.Link>
+                        </>
+                    )}
+                    {role === 'Staff' && <Nav.Link as={Link} to="/mystaffappointments">My Appointments</Nav.Link>}
                 </Nav>
                 <Nav>
                     {isAuthenticated ? (

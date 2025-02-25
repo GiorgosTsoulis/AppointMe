@@ -33,6 +33,10 @@ module.exports = {
         type: DataTypes.TIME,
         allowNull: false
       },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       status: {
         type: DataTypes.ENUM('Pending', 'Confirmed', 'Cancelled'),
         allowNull: false,

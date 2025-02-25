@@ -74,15 +74,16 @@ class appointmentController {
     }
 
     createAppointment = async (req, res) => {
-        const { customerId, staffId, storeId, appointmentDate, appointmentTime, serviceType } = req.body;
+        const { customerId, storeId, staffId, serviceId, appointmentDate, appointmentTime, phoneNumber } = req.body;
 
         const appointment = {
             customerId,
-            staffId,
             storeId,
+            staffId,
+            serviceId,
             appointmentDate,
             appointmentTime,
-            serviceType
+            phoneNumber
         };
 
         try {

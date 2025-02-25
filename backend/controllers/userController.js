@@ -25,11 +25,35 @@ class userController {
         }
     }
 
+    getUserByUsername = async (req, res) => {
+        const username = req.params.username;
+
+        try {
+            const user = await this.userService.getUserByUsername(username);
+            res.json(user);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
     getUsersByRole = async (req, res) => {
         const role = req.params.role;
         try {
             const users = await this.userService.getUsersByRole(role);
             res.json(users);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    getUserRoleByUsername = async (req, res) => {
+        const username = req.params.username;
+
+        try {
+            const userRole = await this.userService.getUserRoleByUsername(username);
+            res.json(userRole);
         } catch (error) {
             console.error(error);
             res.status(500).json(error);
