@@ -8,6 +8,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { motion } from "framer-motion";
 import UserProfile from './components/userProfile';
+import CustomerAppointments from './components/CustomerAppointments';
 
 function App() {
   const location = useLocation();
@@ -45,6 +46,15 @@ function App() {
 
           <Route path='/profile' element={
             <UserProfile />
+          } />
+
+          <Route path='/myappointments' element={
+            <motion.div
+              animate={{ x: 0 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              <CustomerAppointments />
+            </motion.div>
           } />
 
         </Routes>

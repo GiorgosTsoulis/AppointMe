@@ -1,4 +1,4 @@
-export const ClientBookings = () => {
+const CustomerAppointments = () => {
     return (
         <div className="content">
             <div className="header">
@@ -12,5 +12,4 @@ export const ClientBookings = () => {
         </div>
     );
 }
-
-module.exports = ClientBookings;
+export default CustomerAppointments;
