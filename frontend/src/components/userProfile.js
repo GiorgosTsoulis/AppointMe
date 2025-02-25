@@ -5,9 +5,9 @@ const UserProfile = () => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Destroy the JWT token (assuming it's stored in localStorage)
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        console.log('User logged out successfully');
 
         // Navigate to the sign-in page
         navigate('/auth/signin');

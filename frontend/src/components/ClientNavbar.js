@@ -1,33 +1,27 @@
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axiosInstance from '../axiosConfig';
+import { checkAuth } from '../utils/auth';
 
 const ClientNavbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
+    const location = useLocation();
+
+    const authenticate = async () => {
+        const authStatus = await checkAuth();
+        console.log('Auth Status:', authStatus); // Debug log
+        setIsAuthenticated(authStatus.isAuthenticated);
+        setUsername(authStatus.username);
+    };
 
     useEffect(() => {
-        const checkAuth = async () => {
-            const token = localStorage.getItem('token');
-            const storedUsername = localStorage.getItem('username');
-            if (token && storedUsername) {
-                try {
-                    const response = await axiosInstance.get('/auth/me', {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    setIsAuthenticated(true);
-                    setUsername(storedUsername);
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    setIsAuthenticated(false);
-                }
-            }
-        };
-        checkAuth();
-    }, []);
+        authenticate();
+    }, [location]);
+
+    useEffect(() => {
+        console.log('Username:', username); // Debug log
+    }, [username]);
 
     return (
         <Navbar sticky="top" className="navbar" expand="md">

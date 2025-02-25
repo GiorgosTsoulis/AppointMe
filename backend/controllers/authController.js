@@ -27,6 +27,7 @@ class authController {
 
             const token = jwt.sign({ userId: user.userId, username: user.username }, "mySecretKey", { expiresIn: '1h' });
             console.log('User signed in successfully');
+            console.log('Signed in user:', user.username); // Debug log
             res.json({ token, user: { username: user.username, role: user.role } });
         } catch (error) {
             console.error('Error during sign in:', error);
@@ -73,6 +74,7 @@ class authController {
                 return res.status(404).json({ message: 'User not found' });
             }
 
+            console.log('Authenticated user:', user.username); // Debug log
             res.json({ username: user.username, role: user.role });
         } catch (error) {
             console.error('Error fetching user data:', error);

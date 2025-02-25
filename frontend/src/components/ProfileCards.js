@@ -4,8 +4,7 @@ import defaultProfile from '../img/default-pfp.jpg';
 import '../styles/ProfileCards.css';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
-import axiosInstance from '../axiosConfig';
-
+import { checkAuth } from '../utils/auth';
 
 const ProfileCards = ({ profile }) => {
     const profileImage = profile.image;
@@ -13,23 +12,11 @@ const ProfileCards = ({ profile }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        const checkAuth = async () => {
-            const token = localStorage.getItem('token');
-            if (token) {
-                try {
-                    const response = await axiosInstance.get('/auth/me', {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    setIsAuthenticated(true);
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                    setIsAuthenticated(false);
-                }
-            }
+        const authenticate = async () => {
+            const authStatus = await checkAuth();
+            setIsAuthenticated(authStatus.isAuthenticated);
         };
-        checkAuth();
+        authenticate();
     }, []);
 
     const handleBook = () => {

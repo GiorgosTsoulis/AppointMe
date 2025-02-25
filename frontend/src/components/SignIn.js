@@ -26,7 +26,10 @@ const SignIn = () => {
             if (response.status === 200) {
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('username', response.data.user.username);
+
                 console.log('User signed in successfully');
+                console.log('Token:', response.data.token);
+                console.log('Username:', response.data.user.username);
                 navigate("/");
             } else {
                 console.error('Error signing in');
