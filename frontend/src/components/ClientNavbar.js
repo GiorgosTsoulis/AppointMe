@@ -2,6 +2,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { checkAuth } from '../utils/auth';
+import '../styles/ClientNavbar.css';
 
 const ClientNavbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

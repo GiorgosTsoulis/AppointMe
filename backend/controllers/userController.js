@@ -14,7 +14,7 @@ class userController {
     }
 
     getUserById = async (req, res) => {
-        const userId = req.params.userId;
+        const userId = req.params.uuid;
 
         try {
             const user = await this.userService.getUserById(userId);

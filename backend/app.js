@@ -1,6 +1,6 @@
 const express = require('express');
 const { sequelize } = require('./models');
-const { userCtrl, storeCtrl, appointmentCtrl, authCtrl } = require('./diContainer');
+const { userCtrl, storeCtrl, appointmentCtrl, serviceCtrl, staffCtrl, authCtrl } = require('./diContainer');
 
 const app = express();
 const cors = require('cors');
@@ -32,10 +32,11 @@ app.get('/appointme/stores/:uuid', storeCtrl.getStoreById);
 app.get('/appointme/stores/locations', storeCtrl.getAllLocations);
 app.get(`/appointme/store/:uuid/staff`, storeCtrl.getStaffByStoreId);
 app.get('/appointme/stores/services', storeCtrl.getAllServices);
-app.get(`/appointme/store/:uuid/services`, storeCtrl.getServicesByStoreId);
+app.get(`/appointme/stores/:uuid/services`, storeCtrl.getServicesByStoreId);
 app.post('/appointme/store/:uuid/bookappointment', appointmentCtrl.createAppointment);
 
 //Staff Routes
+app.get('/appointme/staff/:uuid', staffCtrl.getStaffById);
 
 // Appointments Routes
 app.get('/appointme/appointments', appointmentCtrl.getAllAppointments);
@@ -44,6 +45,9 @@ app.get('/appointme/appointments/user/:uuid', appointmentCtrl.getAppointmentByUs
 app.get('/appointme/appointments/store/:uuid', appointmentCtrl.getAppointmentByStoreId);
 app.get('/appointme/appointments/staff/:uuid', appointmentCtrl.getAppointmentByStaffId);
 app.get('/appointme/appointments/date/:date', appointmentCtrl.getAppointmentByDate);
+
+//Service Routes
+app.get('/appointme/services/:uuid', serviceCtrl.getServiceById);
 
 app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
 app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);

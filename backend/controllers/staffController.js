@@ -3,11 +3,11 @@ class staffController {
         this.staffService = staffService;
     }
 
-    getUserByStaffId = async (req, res) => {
-        const storeId = req.params.uuid;
+    getStaffById = async (req, res) => {
+        const staffId = req.params.uuid;
 
         try {
-            const staff = await this.staffService.getStaffByStoreId(storeId);
+            const staff = await this.staffService.getStaffById(staffId);
             res.json(staff);
         } catch (error) {
             console.error(error);

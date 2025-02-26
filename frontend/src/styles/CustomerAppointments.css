@@ -1,0 +1,81 @@
+.content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: #f7f7f7;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.pending-appointments,
+.upcoming-appointments,
+.completed-appointments {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.pending-appointments h2,
+.upcoming-appointments h2,
+.completed-appointments h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.appointments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+
+
+.appointment-card:hover {
+    transform: translateY(-5px);
+}
+
+.appointment-card .card-body {
+    padding: 1rem;
+}
+
+.appointment-card .card-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.appointment-card .card-text {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.appointment-card .card-subtitle {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 1rem;
+}

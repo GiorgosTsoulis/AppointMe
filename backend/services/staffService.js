@@ -1,17 +1,14 @@
 class staffService {
-    constructor(userRepository, storeRepository, appointmentRepository, staffRepository) {
-        this.userRepository = userRepository;
-        this.storeRepository = storeRepository;
-        this.appointmentRepository = appointmentRepository;
+    constructor(staffRepository) {
         this.staffRepository = staffRepository;
     }
 
-    async getStaffByStoreId(uuid) {
-        const store = await this.storeRepository.getStoreById(uuid);
-        if (store) {
-            return store.getStaff();
+    async getStaffById(staffId) {
+        const staff = await this.staffRepository.getStaffById(staffId);
+        if (!staff) {
+            throw new Error('Staff not found');
         }
-        return null;
+        return staff;
     }
 }
 
