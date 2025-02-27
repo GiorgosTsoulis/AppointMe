@@ -43,7 +43,7 @@ const SignIn = () => {
 
     return (
         <div>
-            <Navbar sticky="top" className="navbar" expand="md">
+            <Navbar sticky="top" className="signin-navbar" expand="md">
                 <Navbar.Brand as={Link} to="/">
                     AppointMe
                 </Navbar.Brand>
