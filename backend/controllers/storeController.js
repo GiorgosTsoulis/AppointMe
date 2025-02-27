@@ -20,6 +20,17 @@ class storeController {
             const store = await this.storeService.getStoreById(storeId);
             res.json(store);
         } catch (error) {
+            console.error('Error fetching store by ID:', error);
+            res.status(500).json({ message: 'Server error' });
+        }
+    };
+
+    getStoreByUserId = async (req, res) => {
+        const userId = req.params.uuid;
+        try {
+            const store = await this.storeService.getStoreByUserId(userId);
+            res.json(store);
+        } catch (error) {
             console.error(error);
             res.status(500).json(error);
         }

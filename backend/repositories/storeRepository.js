@@ -1,9 +1,7 @@
 class storeRepository {
-    constructor(storeModel, staffModel, userModel, serviceModel) {
+    constructor(storeModel, userModel) {
         this.storeModel = storeModel;
-        this.staffModel = staffModel;
         this.userModel = userModel;
-        this.serviceModel = serviceModel;
     }
 
     async getAllStores() {
@@ -11,18 +9,11 @@ class storeRepository {
     }
 
     async getStoreById(storeId) {
-        return this.storeModel.findOne({
-            where: { storeId },
-            include: [{
-                model: this.staffModel,
-                as: 'staff',
-                include: [{
-                    model: this.userModel,
-                    as: 'user',
-                    attributes: ['username']
-                }]
-            }]
-        });
+        return this.storeModel.findOne({ where: { storeId } });
+    }
+
+    async getStoreByUserId(userId) {
+        return this.storeModel.findOne({ where: { adminId: userId } });
     }
 
     async getStaffByStoreId(storeId) {

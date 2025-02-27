@@ -1,33 +1,51 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import ClientNavbar from './components/ClientNavbar';
 import Home from './components/Home';
 import AppointmentForm from './components/AppointmentForm';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import { motion } from "framer-motion";
 import UserProfile from './components/userProfile';
 import CustomerAppointments from './components/CustomerAppointments';
+import MyStore from './components/MyStore';
+import { useEffect, useState } from 'react';
+import { checkAuth } from './utils/auth';
 
 function App() {
   const location = useLocation();
+  const [authStatus, setAuthStatus] = useState({ isAuthenticated: false, role: '' });
+
+  useEffect(() => {
+    const authenticate = async () => {
+      const status = await checkAuth();
+      setAuthStatus(status);
+    };
+    authenticate();
+  }, [location]);
 
   return (
     <div className="App">
       {location.pathname !== '/auth' && <ClientNavbar />}
-      <div className='content'>
+      <div className='app-content'>
         <Routes>
           <Route path='/auth/signin' element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path='/' element={<Home />} />
-          <Route path='/store/:uuid/book' element={<AppointmentForm />} />
-          <Route path='/profile' element={<UserProfile />} />
-          <Route path='/myappointments' element={
-            <motion.div animate={{ x: 0 }} transition={{ type: "spring", stiffness: 100 }}>
-              <CustomerAppointments />
-            </motion.div>
-          } />
+          {authStatus.isAuthenticated && authStatus.role === 'Customer' && (
+            <>
+              <Route path='/store/:uuid/book' element={<AppointmentForm />} />
+              <Route path='/profile' element={<UserProfile />} />
+              <Route path='/myappointments' element={<CustomerAppointments />} />
+            </>
+          )}
+          {authStatus.isAuthenticated && authStatus.role === 'Admin' && (
+            <>
+              <Route path='/profile' element={<UserProfile />} />
+              <Route path='/mystore' element={<MyStore />} />
+            </>
+          )}
+          <Route path='*' element={<Navigate to="/" />} />
         </Routes>
       </div>
     </div>

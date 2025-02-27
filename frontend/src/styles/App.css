@@ -23,7 +23,7 @@
   background-color: #f7f7f7;
 }
 
-.content {
+.app-content {
   display: flex;
   justify-content: flex-start;
   align-items: center;

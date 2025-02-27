@@ -14,6 +14,18 @@ class serviceController {
             res.status(500).json(error);
         }
     }
+
+    getAllServicesByStoreId = async (req, res) => {
+        const storeId = req.params.uuid;
+
+        try {
+            const services = await this.serviceService.getAllServicesByStoreId(storeId);
+            res.json(services);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
 }
 
 module.exports = serviceController;

@@ -29,14 +29,15 @@ app.delete('/appointme/users/:uuid', userCtrl.deleteUser);
 // Stores Routes
 app.get('/appointme/stores', storeCtrl.getAllStores);
 app.get('/appointme/stores/:uuid', storeCtrl.getStoreById);
+app.get('/appointme/store/user/:uuid', storeCtrl.getStoreByUserId);
 app.get('/appointme/stores/locations', storeCtrl.getAllLocations);
-app.get(`/appointme/store/:uuid/staff`, storeCtrl.getStaffByStoreId);
 app.get('/appointme/stores/services', storeCtrl.getAllServices);
 app.get(`/appointme/stores/:uuid/services`, storeCtrl.getServicesByStoreId);
 app.post('/appointme/store/:uuid/bookappointment', appointmentCtrl.createAppointment);
 
 //Staff Routes
 app.get('/appointme/staff/:uuid', staffCtrl.getStaffById);
+app.get('/appointme/store/:uuid/staff', staffCtrl.getAllStaffByStoreId);
 
 // Appointments Routes
 app.get('/appointme/appointments', appointmentCtrl.getAllAppointments);
@@ -48,6 +49,7 @@ app.get('/appointme/appointments/date/:date', appointmentCtrl.getAppointmentByDa
 
 //Service Routes
 app.get('/appointme/services/:uuid', serviceCtrl.getServiceById);
+app.get('/appointme/store/:uuid/services', serviceCtrl.getAllServicesByStoreId);
 
 app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
 app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);

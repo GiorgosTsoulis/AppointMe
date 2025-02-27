@@ -21,7 +21,7 @@ const serviceController = require('./controllers/serviceController');
 
 const userRepo = new userRepository(User);
 const storeRepo = new storeRepository(Store, Staff, User, Service);
-const staffRepo = new staffRepository(Staff);
+const staffRepo = new staffRepository(Staff, User, Service);
 const appointmentRepo = new appointmentRepository(Appointment);
 const serviceRepo = new serviceRepository(Service);
 

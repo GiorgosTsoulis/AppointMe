@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import AppointmentCard from './AppointmentCard';
 import axiosInstance from '../axiosConfig';
+import { checkAuth } from '../utils/auth';
 import '../styles/CustomerAppointments.css';
 
 const CustomerAppointments = () => {
@@ -8,13 +9,34 @@ const CustomerAppointments = () => {
     const [pendingAppointments, setPendingAppointments] = useState([]);
     const [upcomingAppointments, setUpcomingAppointments] = useState([]);
     const [cancelledAppointments, setCancelledAppointments] = useState([]);
+    const [userName, setUserName] = useState(localStorage.getItem('username'));
+    const [userId, setUserId] = useState('');
+
+    useEffect(() => {
+        const fetchUserId = async () => {
+            try {
+                const response = await axiosInstance.get(`/users/username/${userName}`);
+                console.log('User ID response:', response.data); // Debug log
+                setUserId(response.data.userId);
+            } catch (error) {
+                console.error('Error fetching user ID:', error);
+            }
+        };
+
+        fetchUserId();
+    }, [userName]);
 
     useEffect(() => {
         const fetchAppointments = async () => {
-            try {
-                const response = await axiosInstance.get('/appointments');
-                const allAppointments = response.data;
+            if (!userId) {
+                console.log('User ID is not set'); // Debug log
+                return;
+            }
 
+            try {
+                const response = await axiosInstance.get(`/appointments/user/${userId}`);
+                console.log('Appointments response:', response.data); // Debug log
+                const allAppointments = response.data;
 
                 const pending = allAppointments.filter(appointment => appointment.status === 'Pending');
                 const upcoming = allAppointments.filter(appointment => appointment.status === 'Confirmed');
@@ -30,7 +52,7 @@ const CustomerAppointments = () => {
         };
 
         fetchAppointments();
-    }, []);
+    }, [userId]);
 
     return (
         <div className="content">

@@ -15,6 +15,14 @@ class storeService {
         return store;
     }
 
+    async getStoreByUserId(userId) {
+        const store = await this.storeRepository.getStoreByUserId(userId);
+        if (!store) {
+            throw new Error('Store not found');
+        }
+        return store;
+    }
+
     async getStaffByStoreId(storeId) {
         const staff = await this.storeRepository.getStaffByStoreId(storeId);
         if (!staff) {

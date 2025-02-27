@@ -10,6 +10,14 @@ class staffService {
         }
         return staff;
     }
+
+    async getAllStaffByStoreId(storeId) {
+        const staff = await this.staffRepository.getAllStaffByStoreId(storeId);
+        if (!staff) {
+            throw new Error('Staff not found');
+        }
+        return staff;
+    }
 }
 
 module.exports = staffService;

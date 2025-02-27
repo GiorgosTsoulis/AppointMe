@@ -19,66 +19,38 @@ const formatTime = (timeString) => {
 
 const AppointmentCard = ({ appointment }) => {
     const { appointmentDate, appointmentTime, storeId, serviceId, staffId } = appointment;
-    const [storeInfo, setStoreInfo] = useState({});
-    const [serviceInfo, setServiceInfo] = useState({});
-    const [staffInfo, setStaffInfo] = useState({});
+    const [storeInfo, setStoreInfo] = useState(null);
+    const [serviceInfo, setServiceInfo] = useState(null);
+    const [staffInfo, setStaffInfo] = useState(null);
     const [staffName, setStaffName] = useState('');
 
     useEffect(() => {
-        const fetchStore = async () => {
-            if (storeId) {
-                try {
-                    const response = await axiosInstance.get(`/stores/${storeId}`);
-                    setStoreInfo(response.data);
-                } catch (error) {
-                    console.error('Error fetching store:', error);
+        const fetchData = async () => {
+            try {
+                const storeResponse = await axiosInstance.get(`/stores/${storeId}`);
+                setStoreInfo(storeResponse.data);
+
+                const serviceResponse = await axiosInstance.get(`/services/${serviceId}`);
+                setServiceInfo(serviceResponse.data);
+
+                const staffResponse = await axiosInstance.get(`/staff/${staffId}`);
+                setStaffInfo(staffResponse.data);
+
+                if (staffResponse.data.userId) {
+                    const userResponse = await axiosInstance.get(`/users/${staffResponse.data.userId}`);
+                    setStaffName(userResponse.data.username);
                 }
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
         };
 
-        const fetchService = async () => {
-            if (serviceId) {
-                try {
-                    const response = await axiosInstance.get(`/services/${serviceId}`);
-                    setServiceInfo(response.data);
-                } catch (error) {
-                    console.error('Error fetching service:', error);
-                }
-            }
-        };
-
-        const fetchStaff = async () => {
-            if (staffId) {
-                try {
-                    const response = await axiosInstance.get(`/staff/${staffId}`);
-                    setStaffInfo(response.data);
-                    console.log('Staff Info:', staffInfo);
-                    console.log('Staff ID:', staffId);
-                } catch (error) {
-                    console.error('Error fetching staff:', error);
-                }
-            }
-        };
-
-        fetchStore();
-        fetchService();
-        fetchStaff();
+        fetchData();
     }, [storeId, serviceId, staffId]);
 
-    useEffect(() => {
-        const fetchStaffName = async () => {
-            if (staffId) {
-                try {
-                    const response = await axiosInstance.get(`/users/${staffInfo.userId}`);
-                    setStaffName(response.data.username);
-                } catch (error) {
-                    console.error('Error fetching staff name:', error);
-                }
-            }
-        }
-        fetchStaffName();
+    if (!storeInfo || !serviceInfo || !staffInfo || !staffName) {
+        return <div>Loading...</div>;
     }
-        , [staffId]);
 
     return (
         <div className="appointment-card">
@@ -87,11 +59,11 @@ const AppointmentCard = ({ appointment }) => {
                     <Card.Subtitle className="mb-2 text-muted">
                         {formatDate(appointmentDate)} || {formatTime(appointmentTime)}
                     </Card.Subtitle>
-                    <Card.Title>{storeInfo.name || 'Store Name'}</Card.Title>
+                    <Card.Title>{storeInfo.name}</Card.Title>
                     <Card.Text>
-                        <p>Location: {storeInfo.location || 'Location'}</p>
-                        <p>Service: {serviceInfo.name || 'Service Name'}</p>
-                        <p>Staff: {staffName || 'Staff Name'}</p>
+                        <p>Location: {storeInfo.location}</p>
+                        <p>Service: {serviceInfo.name}</p>
+                        <p>Staff: {staffName}</p>
                         <p>Total Cost: {serviceInfo.price ? `$${serviceInfo.price}` : 'Price'}</p>
                     </Card.Text>
                 </Card.Body>
