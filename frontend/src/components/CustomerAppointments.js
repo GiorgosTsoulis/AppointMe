@@ -55,7 +55,7 @@ const CustomerAppointments = () => {
     }, [userId]);
 
     return (
-        <div className="content">
+        <div className="customer-appointments-content">
             <div className="header">
                 <h1>My Appointments</h1>
                 <p>Here you can see all your appointments</p>

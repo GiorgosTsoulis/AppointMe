@@ -1,24 +1,29 @@
-.content {
+.customer-appointments-content {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     padding: 2rem;
+    /* Reduced padding */
     background-color: #f7f7f7;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    margin-top: 4rem;
+    /* Reduced margin */
 }
 
 .header h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    /* Reduced font size */
     color: #333;
 }
 
 .header p {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    /* Reduced font size */
     color: #666;
 }
 
@@ -28,54 +33,66 @@
     align-items: flex-start;
     flex-direction: column;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
+    /* Reduced max-width */
 }
 
 .pending-appointments,
 .upcoming-appointments,
-.completed-appointments {
+.cancelled-appointments {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    /* Reduced margin */
 }
 
 .pending-appointments h2,
 .upcoming-appointments h2,
-.completed-appointments h2 {
-    font-size: 1.8rem;
+.cancelled-appointments h2 {
+    font-size: 1.5rem;
+    /* Reduced font size */
     color: #333;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    /* Reduced margin */
 }
 
 .appointments {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
+    /* Reduced gap */
 }
 
-
+.appointment-card {
+    transition: transform 0.2s ease-in-out;
+}
 
 .appointment-card:hover {
     transform: translateY(-5px);
 }
 
 .appointment-card .card-body {
-    padding: 1rem;
+    padding: 0.75rem;
+    /* Reduced padding */
 }
 
 .appointment-card .card-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    /* Reduced font size */
     color: #333;
     margin-bottom: 0.5rem;
 }
 
 .appointment-card .card-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    /* Reduced font size */
     color: #666;
     margin-bottom: 0.5rem;
 }
 
 .appointment-card .card-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    /* Reduced font size */
     color: #999;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    /* Reduced margin */
 }

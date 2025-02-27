@@ -8,9 +8,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5rem;
-
-
+    padding: 6rem;
+    margin-bottom: -2rem;
 }
 
 #slogan {
@@ -29,6 +28,7 @@ body {
     padding-right: 10%;
     width: 70%;
     margin: 0 auto;
+    margin-top: -3rem;
 }
 
 #location,
@@ -48,6 +48,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 5rem;
+    padding: 3rem;
 
 }

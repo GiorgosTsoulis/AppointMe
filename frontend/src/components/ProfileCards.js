@@ -30,7 +30,7 @@ const ProfileCards = ({ profile }) => {
 
     return (
         <div className="profile-card">
-            <Card className="card" style={{ width: '13rem', height: '19rem' }}>
+            <Card className="card" style={{ width: '13rem', height: '20rem' }}>
                 <Card.Img className='img' variant="top" src={profileImage || defaultProfile} />
                 <Card.Body className="card-body">
                     <Card.Title className="card-title">{profile.name}</Card.Title>
