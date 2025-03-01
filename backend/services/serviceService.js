@@ -18,6 +18,30 @@ class serviceService {
         }
         return services;
     }
+
+    async updateService(serviceId, serviceData) {
+        const updatedService = this.serviceRepository.updateService(serviceId, serviceData);
+        if (!updatedService) {
+            throw new Error('Failed to update service');
+        }
+        return updatedService;
+    }
+
+    async deleteService(serviceId) {
+        const deletedService = this.serviceRepository.deleteService(serviceId);
+        if (!deletedService) {
+            throw new Error('Failed to delete service');
+        }
+        return deletedService;
+    }
+
+    async createService(serviceData) {
+        const newService = this.serviceRepository.createService(serviceData);
+        if (!newService) {
+            throw new Error('Failed to create service');
+        }
+        return newService;
+    }
 }
 
 module.exports = serviceService;

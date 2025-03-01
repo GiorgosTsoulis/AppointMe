@@ -26,6 +26,44 @@ class serviceController {
             res.status(500).json(error);
         }
     }
+
+    updateService = async (req, res) => {
+        const serviceId = req.params.uuid;
+        const serviceData = req.body;
+
+        try {
+            const updatedService = await this.serviceService.updateService(serviceId, serviceData);
+            res.json(updatedService);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    deleteService = async (req, res) => {
+        const serviceId = req.params.uuid;
+
+        try {
+            const success = await this.serviceService.deleteService(serviceId);
+            res.json(success);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
+    createService = async (req, res) => {
+        const serviceData = req.body;
+
+        try {
+            const newService = await this.serviceService.createService(serviceData);
+            res.json(newService);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
 }
 
 module.exports = serviceController;

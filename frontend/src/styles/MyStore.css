@@ -1,0 +1,156 @@
+.mystore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    padding-top: 17rem;
+    /* Ensure there is enough space for the navbar */
+    background-color: #f7f7f7;
+}
+
+.mystore-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mystore-header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.mystore-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mystore-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.mystore-info p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.mystore-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 2rem;
+}
+
+.mystore-services,
+.mystore-staff {
+    width: 45%;
+}
+
+.mystore-services h3,
+.mystore-staff h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.mystore-services ul,
+.mystore-staff ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mystore-services li,
+.mystore-staff li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mystore-services li:hover,
+.mystore-staff li:hover {
+    border-color: #85A98F;
+}
+
+.mystore-services button,
+.mystore-staff button {
+    background-color: #85A98F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+    /* Add margin to create space between buttons */
+}
+
+.mystore-services button:last-child,
+.mystore-staff button:last-child {
+    margin-right: 0;
+    /* Remove margin from the last button */
+}
+
+.mystore-services button:hover,
+.mystore-staff button:hover {
+    background-color: #6C7A89;
+}
+
+.mystore-form {
+    width: 45%;
+}
+
+.mystore-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mystore-form form h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.mystore-form form label {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.mystore-form form input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.mystore-form form input:hover {
+    border-color: #85A98F;
+}
+
+.mystore-form form button {
+    background-color: #85A98F;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mystore-form form button:hover {
+    background-color: #6C7A89;
+}

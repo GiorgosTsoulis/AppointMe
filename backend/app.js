@@ -46,13 +46,16 @@ app.get('/appointme/appointments/user/:uuid', appointmentCtrl.getAppointmentByUs
 app.get('/appointme/appointments/store/:uuid', appointmentCtrl.getAppointmentByStoreId);
 app.get('/appointme/appointments/staff/:uuid', appointmentCtrl.getAppointmentByStaffId);
 app.get('/appointme/appointments/date/:date', appointmentCtrl.getAppointmentByDate);
+app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
+app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);
 
 //Service Routes
 app.get('/appointme/services/:uuid', serviceCtrl.getServiceById);
 app.get('/appointme/store/:uuid/services', serviceCtrl.getAllServicesByStoreId);
+app.put('/appointme/services/:uuid', serviceCtrl.updateService);
+app.delete('/appointme/services/:uuid', serviceCtrl.deleteService);
+app.post('/appointme/store/:uuid/createservice', serviceCtrl.createService);
 
-app.put('/appointme/appointments/:uuid', appointmentCtrl.updateAppointment);
-app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);
 
 // Server and Database Initialization
 app.listen({ port: 5000 }, async () => {

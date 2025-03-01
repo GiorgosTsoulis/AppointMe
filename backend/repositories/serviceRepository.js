@@ -10,6 +10,26 @@ class serviceRepository {
     async getAllServicesByStoreId(storeId) {
         return this.serviceModel.findAll({ where: { storeId } });
     }
+
+    async updateService(serviceId, serviceData) {
+        const service = await this.serviceModel.findOne({ where: { serviceId } });
+        if (service) {
+            await service.update(serviceData);
+            return service;
+        }
+        return null;
+    }
+
+    async deleteService(serviceId) {
+        const service = await this.serviceModel.findOne({ where: { serviceId } });
+        if (service) {
+            return service.destroy();
+        }
+    }
+
+    async createService(serviceData) {
+        return this.serviceModel.create(serviceData);
+    }
 }
 
 module.exports = serviceRepository;
