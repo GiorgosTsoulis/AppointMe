@@ -11,7 +11,7 @@ export const MyStore = () => {
     const [allStaff, setAllStaff] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [serviceForm, setServiceForm] = useState({ name: '', price: '', duration: '' });
-    const [staffForm, setStaffForm] = useState({ userId: '', serviceId: '' });
+    const [staffForm, setStaffForm] = useState({ username: '', serviceName: '', userId: '', serviceId: '' });
     const [editingServiceId, setEditingServiceId] = useState(null);
     const [editingStaffId, setEditingStaffId] = useState(null);
 
@@ -122,21 +122,64 @@ export const MyStore = () => {
         }
     };
 
+    const handleEditStaff = async (staff) => {
+        try {
+            console.log('Editing staff:', staff); // DEBUG
+            // Fetch userId based on username
+            const userResponse = await axiosInstance.get(`/users/username/${staff.user.username}`);
+            const userId = userResponse.data.userId;
+
+            // Fetch serviceId based on service name
+            const serviceResponse = await axiosInstance.get(`/store/${store.storeId}/services`);
+            const service = serviceResponse.data.find(service => service.name === staff.service.name);
+            const serviceId = service ? service.serviceId : null;
+
+            setStaffForm({ username: staff.user.username, serviceName: staff.service.name, userId, serviceId });
+            setEditingStaffId(staff.staffId);
+            console.log('Fetched userId and serviceId:', { userId, serviceId }); // DEBUG
+        } catch (error) {
+            console.error('Error fetching user or service ID:', error);
+        }
+    };
+
     const handleStaffFormSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Fetch userId based on username
+            const userResponse = await axiosInstance.get(`/users/username/${staffForm.username}`);
+            const userId = userResponse.data.userId;
+
+            // Fetch serviceId based on service name
+            const serviceResponse = await axiosInstance.get(`/store/${store.storeId}/services`);
+            const service = serviceResponse.data.find(service => service.name === staffForm.serviceName);
+            const serviceId = service ? service.serviceId : null;
+
+            if (!userId || !serviceId) {
+                alert('Invalid username or service name');
+                return;
+            }
+
+            const staffData = {
+                userId,
+                storeId: store.storeId,
+                serviceId
+            };
+
             if (editingStaffId) {
                 // Edit staff
-                await axiosInstance.put(`/staff/${editingStaffId}`, staffForm);
+                console.log('Editing staff with data:', staffData); // DEBUG
+                await axiosInstance.put(`/staff/${editingStaffId}`, staffData);
             } else {
                 // Add new staff
-                await axiosInstance.post(`/store/${store.storeId}/staff`, staffForm);
+                console.log('Adding new staff with data:', staffData); // DEBUG
+                await axiosInstance.post(`/store/${store.storeId}/createstaff`, staffData);
             }
-            setStaffForm({ userId: '', serviceId: '' });
+            setStaffForm({ username: '', serviceName: '', userId: '', serviceId: '' });
             setEditingStaffId(null);
             // Refresh staff
             const response = await axiosInstance.get(`/store/${store.storeId}/staff`);
             setAllStaff(response.data);
+            console.log('Staff list refreshed:', response.data); // DEBUG
         } catch (error) {
             console.error('Error adding/editing staff:', error);
         }
@@ -145,11 +188,6 @@ export const MyStore = () => {
     const handleEditService = (service) => {
         setServiceForm({ serviceId: service.serviceId, name: service.name, price: service.price, duration: service.duration });
         setEditingServiceId(service.serviceId);
-    };
-
-    const handleEditStaff = (staff) => {
-        setStaffForm({ userId: staff.userId, serviceId: staff.serviceId });
-        setEditingStaffId(staff.staffId);
     };
 
     const handleDeleteService = async (serviceId) => {
@@ -228,7 +266,7 @@ export const MyStore = () => {
                     <h3>Staff:</h3>
                     <ul>
                         {allStaff.length > 0 ? (
-                            allStaff.filter(staff => staff.service !== null).map((staff) => (
+                            allStaff.filter(staff => staff.service !== null && staff.user !== null).map((staff) => (
                                 <li key={staff.staffId}>
                                     {staff.user.username} || Service Type: {staff.service.name}
                                     <button onClick={() => handleEditStaff(staff)}>Edit</button>
@@ -244,12 +282,12 @@ export const MyStore = () => {
                     <form onSubmit={handleStaffFormSubmit}>
                         <h3>{editingStaffId ? 'Edit Staff' : 'Add Staff'}</h3>
                         <label>
-                            User ID:
-                            <input type="text" name="userId" value={staffForm.userId} onChange={handleStaffFormChange} required />
+                            Username:
+                            <input type="text" name="username" value={staffForm.username} onChange={handleStaffFormChange} required />
                         </label>
                         <label>
-                            Service ID:
-                            <input type="text" name="serviceId" value={staffForm.serviceId} onChange={handleStaffFormChange} required />
+                            Service Name:
+                            <input type="text" name="serviceName" value={staffForm.serviceName} onChange={handleStaffFormChange} required />
                         </label>
                         <button type="submit">{editingStaffId ? 'Update Staff' : 'Add Staff'}</button>
                     </form>

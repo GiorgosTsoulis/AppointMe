@@ -40,6 +40,25 @@ class staffRepository {
             ]
         });
     }
+
+    async updateStaff(staffId, userId, serviceId) {
+        return this.staffModel.update(
+            { userId, serviceId },
+            { where: { staffId } }
+        );
+    }
+
+    async createStaff(storeId, userId, serviceId) {
+        return this.staffModel.create({
+            storeId,
+            userId,
+            serviceId
+        });
+    }
+
+    async deleteStaff(staffId) {
+        return this.staffModel.destroy({ where: { staffId } });
+    }
 }
 
 module.exports = staffRepository;

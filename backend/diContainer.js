@@ -20,10 +20,10 @@ const authController = require('./controllers/authController');
 const serviceController = require('./controllers/serviceController');
 
 const userRepo = new userRepository(User);
-const storeRepo = new storeRepository(Store, Staff, User, Service);
-const staffRepo = new staffRepository(Staff, User, Service);
-const appointmentRepo = new appointmentRepository(Appointment);
+const storeRepo = new storeRepository(Store, User);
+const appointmentRepo = new appointmentRepository(Appointment, User, Store, Service);
 const serviceRepo = new serviceRepository(Service);
+const staffRepo = new staffRepository(Staff, User, Service);
 
 const userServ = new userService(userRepo);
 const storeServ = new storeService(storeRepo);
@@ -45,4 +45,4 @@ module.exports = {
     appointmentCtrl,
     serviceCtrl,
     authCtrl
-}
+};

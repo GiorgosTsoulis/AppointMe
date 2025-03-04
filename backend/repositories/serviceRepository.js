@@ -11,6 +11,10 @@ class serviceRepository {
         return this.serviceModel.findAll({ where: { storeId } });
     }
 
+    async getStoreServiceByName(storeId, name) {
+        return this.serviceModel.findOne({ where: { storeId, name } });
+    }
+
     async updateService(serviceId, serviceData) {
         const service = await this.serviceModel.findOne({ where: { serviceId } });
         if (service) {

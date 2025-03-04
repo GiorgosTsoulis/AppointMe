@@ -38,6 +38,10 @@ app.post('/appointme/store/:uuid/bookappointment', appointmentCtrl.createAppoint
 //Staff Routes
 app.get('/appointme/staff/:uuid', staffCtrl.getStaffById);
 app.get('/appointme/store/:uuid/staff', staffCtrl.getAllStaffByStoreId);
+app.put('/appointme/staff/:uuid', staffCtrl.updateStaff);
+app.post('/appointme/store/:uuid/createstaff', staffCtrl.createStaff);
+app.delete('/appointme/staff/:uuid', staffCtrl.deleteStaff);
+
 
 // Appointments Routes
 app.get('/appointme/appointments', appointmentCtrl.getAllAppointments);
@@ -52,6 +56,7 @@ app.delete('/appointme/appointments/:uuid', appointmentCtrl.deleteAppointment);
 //Service Routes
 app.get('/appointme/services/:uuid', serviceCtrl.getServiceById);
 app.get('/appointme/store/:uuid/services', serviceCtrl.getAllServicesByStoreId);
+app.get('/appointme/store/:uuid/service/:name', serviceCtrl.getStoreServiceByName);
 app.put('/appointme/services/:uuid', serviceCtrl.updateService);
 app.delete('/appointme/services/:uuid', serviceCtrl.deleteService);
 app.post('/appointme/store/:uuid/createservice', serviceCtrl.createService);

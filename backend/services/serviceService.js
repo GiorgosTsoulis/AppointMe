@@ -19,6 +19,14 @@ class serviceService {
         return services;
     }
 
+    async getStoreServiceByName(storeId, name) {
+        const service = this.serviceRepository.getStoreServiceByName(storeId, name);
+        if (!service) {
+            throw new Error('Service not found');
+        }
+        return service;
+    }
+
     async updateService(serviceId, serviceData) {
         const updatedService = this.serviceRepository.updateService(serviceId, serviceData);
         if (!updatedService) {

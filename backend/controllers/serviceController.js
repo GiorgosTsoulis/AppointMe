@@ -27,6 +27,19 @@ class serviceController {
         }
     }
 
+    getStoreServiceByName = async (req, res) => {
+        const storeId = req.params.storeId;
+        const name = req.params.name;
+
+        try {
+            const service = await this.serviceService.getStoreServiceByName(storeId, name);
+            res.json(service);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json(error);
+        }
+    }
+
     updateService = async (req, res) => {
         const serviceId = req.params.uuid;
         const serviceData = req.body;

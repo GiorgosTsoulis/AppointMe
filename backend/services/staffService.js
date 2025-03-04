@@ -18,6 +18,30 @@ class staffService {
         }
         return staff;
     }
+
+    async updateStaff(staffId, userId, serviceId) {
+        const staff = await this.staffRepository.updateStaff(staffId, userId, serviceId);
+        if (!staff) {
+            throw new Error('Error updating staff');
+        }
+        return staff;
+    }
+
+    async createStaff(storeId, userId, serviceId) {
+        const staff = await this.staffRepository.createStaff(storeId, userId, serviceId);
+        if (!staff) {
+            throw new Error('Error creating staff');
+        }
+        return staff;
+    }
+
+    async deleteStaff(staffId) {
+        const result = await this.staffRepository.deleteStaff(staffId);
+        if (!result) {
+            throw new Error('Error deleting staff');
+        }
+        return result;
+    }
 }
 
 module.exports = staffService;
