@@ -6,11 +6,11 @@
       "localStorage": [
         {
           "name": "username",
-          "value": "giorgos"
+          "value": "aspasia"
         },
         {
           "name": "token",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMGFlNDQzOS0xMTY0LTQ5ZTEtYTBjMC01ZTYxN2MyMTdhZjIiLCJ1c2VybmFtZSI6Imdpb3Jnb3MiLCJpYXQiOjE3NDEyODE0ODAsImV4cCI6MTc0MTI4NTA4MH0.TvekEPYvFU5y8hZBvuuUEox_k2rwb1h9LKOyBd8-yE0"
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5MGI0NmNjZi0zYTRmLTQ0Y2QtYTFmYy0wYmFlZTY2ZTUwOTciLCJ1c2VybmFtZSI6ImFzcGFzaWEiLCJpYXQiOjE3NDEyODE3NjYsImV4cCI6MTc0MTI4NTM2Nn0.B4G1oJnuJb6otKSGWSI2AYw9gJJTu7EHTJf6_jtmR8w"
         }
       ]
     }
