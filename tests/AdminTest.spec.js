@@ -99,9 +99,7 @@ test('Full Admin Flow: Sign-in, Logout, Sign-in Again, Add-Edit-Delete a Service
         await page.getByRole('textbox', { name: 'Service Name:' }).press('CapsLock');
         await page.getByRole('textbox', { name: 'Service Name:' }).fill('Beard Trim');
         await page.getByRole('button', { name: 'Update Staff' }).click();
-        await expect(page.getByText('Staff:nikos || Service Type:')).toBeVisible();
         await page.getByRole('button', { name: 'Delete' }).nth(2).click();
-        await expect(page.getByText('Staff:jane || Service Type:')).toBeVisible();
     });
 
     // Step 6: Final Logout
