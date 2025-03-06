@@ -19,6 +19,7 @@
     "sequelize": "^6.37.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.1",
     "nodemon": "^3.1.7",
     "sequelize-cli": "^6.6.2"
   }

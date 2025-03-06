@@ -1,7 +1,9 @@
+// filepath: /home/giorgos/AppointMe/frontend/src/utils/auth.js
 import axiosInstance from '../axiosConfig';
 
 export const checkAuth = async () => {
     const token = localStorage.getItem('token');
+    console.log('Token from localStorage:', token); // Debug log
     if (token) {
         try {
             const response = await axiosInstance.get('/auth/me', {

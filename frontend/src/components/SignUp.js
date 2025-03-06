@@ -1,9 +1,9 @@
+// filepath: /home/giorgos/AppointMe/frontend/src/components/SignUp.js
 import "../styles/SignUp.css";
 import { Navbar } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import axiosInstance from '../axiosConfig';
-
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -26,7 +26,13 @@ const SignUp = () => {
         try {
             const response = await axiosInstance.post('/auth/signup', formData);
             if (response.status === 200) {
+                const token = response.data.token;
+                localStorage.setItem('token', token);
+                localStorage.setItem('username', response.data.user.username);
+
                 console.log('User created successfully');
+                console.log('Token:', token); // Debug log
+                console.log('Username:', response.data.user.username);
                 navigate("/");
             } else {
                 console.error('Error creating user');
@@ -55,10 +61,10 @@ const SignUp = () => {
                     <form onSubmit={handleSubmit}>
 
                         <label>Username</label>
-                        <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="username" />
+                        <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="username" required />
 
                         <label>Password</label>
-                        <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" />
+                        <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
 
                         <label>Role</label>
                         <select name="role" value={formData.role} onChange={handleChange}>

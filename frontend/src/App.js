@@ -24,6 +24,13 @@ function App() {
     authenticate();
   }, [location]);
 
+  useEffect(() => {
+    if (authStatus.isAuthenticated && authStatus.role === 'Admin' && location.pathname.startsWith('/store/')) {
+      window.location.href = '/';
+      alert('You are not a customer');
+    }
+  }, [authStatus, location]);
+
   return (
     <div className="App">
       {location.pathname !== '/auth' && <ClientNavbar />}
