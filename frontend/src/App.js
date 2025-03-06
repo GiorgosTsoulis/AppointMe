@@ -52,6 +52,12 @@ function App() {
               <Route path='/mystore' element={<MyStore />} />
             </>
           )}
+          {authStatus.isAuthenticated && authStatus.role === 'Staff' && (
+            <>
+              <Route path='/profile' element={<UserProfile />} />
+            </>
+          )}
+          
           <Route path='*' element={<Navigate to="/" />} />
         </Routes>
       </div>
